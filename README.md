@@ -1,6 +1,8 @@
+<p align="center"><img src="https://www.eshipper.com/hubfs/eShipper_CourierServices_default.gif" alt="In amazing things we trust" width="200"></p>
+
 # Shipper
 
-> IDF Release helper
+> IDF Release helper based on GitHub API
 
 ## Build Setup
 
