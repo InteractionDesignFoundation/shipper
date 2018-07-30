@@ -14,6 +14,8 @@
 </template>
 
 <script>
+  import wretch from 'wretch'
+
   export default {
     name: "Deployment",
     props: {
