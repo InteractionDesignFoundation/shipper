@@ -142,4 +142,7 @@
   .committer {
     width: 1.5em;
   }
+  .mono {
+    font-family: monospace;
+  }
 </style>

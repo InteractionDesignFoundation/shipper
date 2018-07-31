@@ -134,6 +134,8 @@
   :root {
     --blue: rgba(21, 102, 255, 0.67);
     --spacing-sm: 10px;
+    --spacing-md: 20px;
+    --spacing-lg: 50px;
   }
 
   h1 {
@@ -159,7 +161,7 @@
   }
 
   .step {
-    margin-bottom: 50px;
+    margin-bottom: var(--spacing-lg);
     border: var(--blue) 1px dashed;
     padding: var(--spacing-sm);
   }
@@ -170,7 +172,7 @@
 </style>
 <style scoped>
   .hero {
-    margin: 20px 0;
+    margin: var(--spacing-md) 0;
     text-align: center;
   }
   .hero__image {
