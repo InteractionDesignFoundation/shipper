@@ -19,6 +19,7 @@
     <Milestone
       v-if="selectedMilestone"
       :milestone="selectedMilestone"
+      :octo-graph-client="octoGraphClient"
       :octo-rest-repo-client="octoRestRepoClient"
       class="step"
       @new-milestone-created="onNewMilestoneCreated"/>
