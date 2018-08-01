@@ -82,7 +82,7 @@
         </fieldset>
       </form>
 
-      <form @click.prevent="createNewMilestone">
+      <form @submit.prevent="createNewMilestone">
         <fieldset
           :disabled="createdMilestone || milestone.state === 'OPEN'"
           class="field has-addons">
