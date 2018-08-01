@@ -38,14 +38,14 @@
           :style="{ backgroundColor: '#'+label.color}"
           class="gh-label">{{ label.name }}</span>
       </li>
-      <p v-if="closedIssuesNumber === 0">
-        <b>No any closed issues?</b> Maybe something wrong, please double check before creating a new milestone.
-      </p>
-      <p v-if="openIssuesNumber !== 0">
-        <b>Has open issues?</b> Maybe something wrong, please ping open issue assignee(s) to update a state of open
-        issue(s) attached to this milestone.
-      </p>
     </ul>
+    <p v-if="closedIssuesNumber === 0">
+      <b>No any closed issues?</b> Maybe something wrong, please double check before creating a new milestone.
+    </p>
+    <p v-if="openIssuesNumber !== 0">
+      <b>Has open issues?</b> Maybe something wrong, please ping open issue assignee(s) to update a state of open
+      issue(s) attached to this milestone.
+    </p>
 
     <hr>
     <div>
