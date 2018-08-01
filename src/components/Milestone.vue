@@ -174,7 +174,7 @@
           .catch(error => {
             const validationErrors = error.json && error.json.errors ? error.json.errors : [];
             const errorsAsText = validationErrors.reduce((str, currentError) => {
-              return str += `\n${currentError.resource}.${currentError.field} ${currentError.code}`;
+              return str + `\n${currentError.resource}.${currentError.field} ${currentError.code}`;
             }, '');
             alert(`Error ${error.response.statusText}: ${error.json.message} ${errorsAsText}`);
           })
