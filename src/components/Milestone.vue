@@ -61,7 +61,7 @@
               type="text"
               required
               minlength="10"
-              pattern="^Release [0-9.A-Z]{3,7}$"
+              pattern="^Release [0-9.A-Z]{3,}$"
               placeholder="Current milestone title"
               list="possibleReleaseNames">
             <datalist id="possibleReleaseNames">
