@@ -26,7 +26,7 @@
     <div>
       <button 
         class="button is-warning" 
-        @click="createRelease">3. Create a new release</button>
+        @click="createRelease">Create a new release</button>
     </div>
   </section>
 </template>
