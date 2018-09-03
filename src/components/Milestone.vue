@@ -197,7 +197,6 @@
           .post()
           .json(json => json.data.repository.milestones.nodes.find(milestone => milestone.title.includes('Release')))
           .then(milestoneOrNull => {
-            console.log(milestoneOrNull);
             const milestoneTitles = [];
             if (!milestoneOrNull) {
               return milestoneTitles;

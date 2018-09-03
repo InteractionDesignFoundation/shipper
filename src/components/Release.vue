@@ -102,7 +102,6 @@ Closed issues: ${milestone.url}?closed=1`
           while (match = regex.exec(label.name)) {
             emojies.push(match[0]);
           }
-          console.log(emojies);
           return emojies.join('');
         });
 

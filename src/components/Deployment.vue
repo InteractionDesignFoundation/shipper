@@ -38,11 +38,11 @@
         return wretch(this.deployTriggerWebhookUrl)
           .post()
           .forbidden(err => {
-            // not working, I think due to CORS problem
+            // not working, possibly due to CORS politics
             console.log(err.status);
           })
           .res(response => {
-            // not working, I think due to CORS problem
+            // not working, possibly due to CORS politics
             alert('OK!');
             console.info(`response`, response);
             return response.status;
