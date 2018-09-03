@@ -32,6 +32,8 @@
 </template>
 
 <script>
+  import emojiRegex from 'emoji-regex';
+
   export default {
     name: "Release",
     props: {
@@ -64,7 +66,8 @@
     },
     methods: {
       generateReleaseName: function (milestone) {
-        return milestone.title.match(/[0-9.]+/)[0];
+        const semverNumbers = milestone.title.match(/[0-9.]+/);
+        return semverNumbers ? semverNumbers[0] : '?';
       },
       generateReleaseNotes: function (milestone) {
         const changelogItems = new Set();
@@ -92,38 +95,18 @@ Closed issues: ${milestone.url}?closed=1`
           });
       },
       getChangelogTextForIssue: function (issue) {
-        let prefix = '';
-        issue.labels.nodes.forEach(label => {
-          if (label.name.includes('minor bug')) {
-            return `Fixes`;
+        const prefixes = issue.labels.nodes.map(label => {
+          const regex = emojiRegex();
+          let match;
+          const emojies = [];
+          while (match = regex.exec(label.name)) {
+            emojies.push(match[0]);
           }
-          if (label.name.includes('not a bug')) {
-            return ``;
-          }
-
-          if (label.name.includes('Epic')) {
-            prefix += '👑 ';
-          } else if (label.name.includes('major feature')) {
-            prefix += '⭐️ ⭐️ ';
-          } else if (label.name.includes('minor feature')) {
-            prefix += '⭐️ ';
-          } else if (label.name.includes('enhancement')) {
-            prefix += '✨ ';
-          } else if (label.name.includes('critical bug')) {
-            prefix += '💥 ';
-          } else if (label.name.includes('frontend')) {
-            prefix += '🎀 ';
-          }
-
-          if (label.name.includes('performance')) {
-            prefix += '🐎 ';
-          }
-          if (label.name.includes('urgent')) {
-            prefix += '🔥 ';
-          }
+          console.log(emojies);
+          return emojies.join('');
         });
 
-        return `${prefix}${issue.title}`;
+        return `${prefixes.join('')}${issue.title}`;
       },
     },
   }
