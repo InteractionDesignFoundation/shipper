@@ -4,18 +4,22 @@
 
 > IDF Release helper based on GitHub API
 
-## Build Setup
+## Project setup
+```
+yarn install
+```
 
-``` bash
-# install dependencies
-yarn
+### Compiles and hot-reloads for development
+```
+yarn run serve
+```
 
-# serve with hot reload at localhost:8080
-yarn dev
+### Compiles and minifies for production
+```
+yarn run build
+```
 
-# build for production with minification
-yarn build
-
-# build for production and view the bundle analyzer report
-yarn build --report
+### Lints and fixes files
+```
+yarn run lint
 ```

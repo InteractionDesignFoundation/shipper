@@ -3,7 +3,8 @@
     <section class="hero">
       <img
         class="hero__image"
-        src="https://www.eshipper.com/hubfs/eShipper_CourierServices_default.gif">
+        alt="Shipper logo"
+        src="./assets/logo.png">
     </section>
 
     <Settings
@@ -62,12 +63,12 @@
 
 <script>
   import wretch from 'wretch'
-  import Settings from './components/Settings'
-  import MilestoneSelector from './components/MilestoneSelector'
-  import Milestone from './components/Milestone'
-  import Merge from './components/Merge'
-  import Release from './components/Release'
-  import Deployment from './components/Deployment'
+  import Settings from './components/Settings.vue'
+  import MilestoneSelector from './components/MilestoneSelector.vue'
+  import Milestone from './components/Milestone.vue'
+  import Merge from './components/Merge.vue'
+  import Release from './components/Release.vue'
+  import Deployment from './components/Deployment.vue'
 
   export default {
     name: 'App',

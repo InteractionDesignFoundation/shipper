@@ -37,25 +37,20 @@
         /** @see https://forge.laravel.com/api-documentation#update-deployment-script */
         return wretch(this.deployTriggerWebhookUrl)
           .post()
-          .forbidden(err => {
+          .forbidden(() => {
             // not working, possibly due to CORS politics
-            console.log(err.status);
           })
           .res(response => {
             // not working, possibly due to CORS politics
-            alert('OK!');
-            console.info(`response`, response);
             return response.status;
           })
-          .catch(err => {
-            console.log(`catch`, err);
+          .catch(() => {
             return 'CORS or other error'
           })
-          .then((message) => {
+          .then(() => {
             this.isDeploying = false;
             this.isDeployed = true;
             this.$emit('deployed');
-            console.info(`Deploy promise latest step: ${message}`);
           })
       },
     },
