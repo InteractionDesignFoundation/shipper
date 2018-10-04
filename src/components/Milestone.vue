@@ -51,56 +51,56 @@
     <div>
 
       <form @submit.prevent="renameAndCloseCurrentMilestone">
-        <fieldset
-          :disabled="milestone.state !== 'OPEN'"
-          class="field has-addons">
-          <div class="control">
-            <input
-              v-model="thisMilestoneTitle"
-              class="input"
-              type="text"
-              required
-              minlength="10"
-              pattern="^Release [0-9.A-Z]{3,}$"
-              placeholder="Current milestone title"
-              list="possibleReleaseNames">
-            <datalist id="possibleReleaseNames">
-              <option
-                v-for="milestoneTitle in milestoneTitles"
-                :key="milestoneTitle"
-                :value="milestoneTitle">{{ milestoneTitle }}</option>
-            </datalist>
-          </div>
-          <div class="control">
-            <button
-              :disabled="milestone.state.toLowerCase() !== 'open'"
-              class="button is-success"
-              type="submit">
-              Rename and close current milestone
-            </button>
+        <fieldset :disabled="milestone.state !== 'OPEN'">
+            <div class="field has-addons">
+              <div class="control">
+              <input
+                v-model="thisMilestoneTitle"
+                class="input"
+                type="text"
+                required
+                minlength="10"
+                pattern="^Release [0-9.A-Z]{3,}$"
+                placeholder="Current milestone title"
+                list="possibleReleaseNames">
+              <datalist id="possibleReleaseNames">
+                <option
+                  v-for="milestoneTitle in milestoneTitles"
+                  :key="milestoneTitle"
+                  :value="milestoneTitle">{{ milestoneTitle }}</option>
+              </datalist>
+            </div>
+            <div class="control">
+              <button
+                :disabled="milestone.state.toLowerCase() !== 'open'"
+                class="button is-success"
+                type="submit">
+                Rename and close current milestone
+              </button>
+            </div>
           </div>
         </fieldset>
       </form>
 
       <form @submit.prevent="createNewMilestone">
-        <fieldset
-          :disabled="createdMilestone || milestone.state === 'OPEN'"
-          class="field has-addons">
-          <div class="control">
-            <input
-              v-model="nextMilestoneTitle"
-              class="input"
-              type="text"
-              required
-              minlength="10"
-              placeholder="Next milestone title">
-          </div>
-          <div class="control">
-            <button
-              class="button is-success"
-              type="submit">
-              Create a new milestone
-            </button>
+        <fieldset :disabled="createdMilestone || milestone.state === 'OPEN'">
+          <div class="field has-addons">
+            <div class="control">
+              <input
+                v-model="nextMilestoneTitle"
+                class="input"
+                type="text"
+                required
+                minlength="10"
+                placeholder="Next milestone title">
+            </div>
+            <div class="control">
+              <button
+                class="button is-success"
+                type="submit">
+                Create a new milestone
+              </button>
+            </div>
           </div>
         </fieldset>
       </form>

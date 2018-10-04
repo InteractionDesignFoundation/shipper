@@ -8,7 +8,8 @@
       <input 
         id="releaseName" 
         v-model="releaseName" 
-        type="text" 
+        type="text"
+        placeholder="Example: 3.10.2"
         class="input">
     </div>
     <div class="field">
@@ -20,8 +21,7 @@
         v-model="releaseNotes" 
         class="textarea" 
         rows="10" 
-        placeholder="Release notes"
-        style="width: 100%"/>
+        placeholder="Release notes"/>
     </div>
     <div>
       <button 
@@ -99,6 +99,7 @@ Closed issues: ${milestone.url}?closed=1`
           const regex = emojiRegex();
           let match;
           const emojies = [];
+          // eslint-disable-next-line no-cond-assign
           while (match = regex.exec(label.name)) {
             emojies.push(match[0]);
           }
@@ -112,5 +113,7 @@ Closed issues: ${milestone.url}?closed=1`
 </script>
 
 <style scoped>
-
+ .textarea {
+   width: 100%;
+ }
 </style>
