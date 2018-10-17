@@ -143,7 +143,9 @@
       },
     },
     created: function () {
-      this.getSuggestedMilestoneTitles().then(titles => this.milestoneTitles = titles);
+      this.getCurrentReleaseNumber()
+          .then(currentReleaseNumber => this.getSuggestedMilestoneTitles(currentReleaseNumber, 'Release '))
+          .then(suggestedMilestoneTitles => this.milestoneTitles = suggestedMilestoneTitles);
     },
     methods: {
       renameAndCloseCurrentMilestone: function () {
@@ -180,8 +182,8 @@
           })
 
       },
-      getSuggestedMilestoneTitles: function () {
-        const query = `
+      getCurrentReleaseNumber: function () {
+          const query = `
                  query {
                    repository(owner:"InteractionDesignFoundation", name:"IDF-web") {
                    milestones(first:5 states: CLOSED, orderBy: {field:NUMBER, direction:DESC}) {
@@ -192,25 +194,28 @@
                    }
                  }
                    }`;
-        return this.octoGraphClient
-          .json({query: query})
-          .post()
-          .json(json => json.data.repository.milestones.nodes.find(milestone => milestone.title.includes('Release')))
-          .then(milestoneOrNull => {
-            const milestoneTitles = [];
-            if (!milestoneOrNull) {
-              return milestoneTitles;
-            }
+          return this.octoGraphClient
+              .json({query: query})
+              .post()
+              .json(json => json.data.repository.milestones.nodes.find(milestone => milestone.title.includes('Release')))
+              .then(milestone => milestone.title);
+      },
+      getSuggestedMilestoneTitles: function (currentReleaseNumber, prefix = '') {
+          const milestoneTitles = [];
+          if (!currentReleaseNumber) {
+              return [`${prefix}0.1`, `${prefix}1.0`];
+          }
 
-            const parts = milestoneOrNull.title.replace('Release ', '').split('.');
-            milestoneTitles.push(`Release ${parseInt(parts[0])+1}.0`);
-            milestoneTitles.push(`Release ${parts[0]}.${parseInt(parts[1])+1}`);
-            if (parts.length > 1) {
-              milestoneTitles.push(`Release ${parts[0]}.${parts[1]}.${parseInt(parts[2] || 0)+1}`);
-            }
+          const parts = currentReleaseNumber.replace(prefix, '').split('.');
+          const currentMajorNumber = parseInt(parts[0]) || 0;
+          const currentMinorNumber = parseInt(parts[1]) || 0;
+          const currentPatchNumber = parseInt(parts[2]) || 0;
 
-            return milestoneTitles;
-          });
+          milestoneTitles.push(`${prefix}${currentMajorNumber}.${currentMinorNumber}.${currentPatchNumber + 1}`);
+          milestoneTitles.push(`${prefix}${currentMajorNumber}.${currentMinorNumber + 1}.0`);
+          milestoneTitles.push(`${prefix}${currentMajorNumber + 1}.0.0`);
+
+          return milestoneTitles;
       },
     },
   }

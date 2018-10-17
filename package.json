@@ -1,13 +1,12 @@
 {
   "name": "shipper",
-  "version": "1.1.0",
-  "description": "IDF Release helper",
-  "author": "Alex lptn <web.lapateen@gmail.com>",
+  "version": "1.1.1",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --modern",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
     "emoji-regex": "^7.0.1",
@@ -15,9 +14,13 @@
     "wretch": "^1.4.0"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.0.1",
+    "@vue/cli-plugin-babel": "^3.0.5",
     "@vue/cli-plugin-eslint": "^3.0.1",
+    "@vue/cli-plugin-unit-jest": "^3.0.5",
     "@vue/cli-service": "^3.0.1",
+    "@vue/test-utils": "^1.0.0-beta.20",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-jest": "^23.0.1",
     "vue-template-compiler": "^2.5.17"
   },
   "eslintConfig": {
@@ -44,5 +47,7 @@
     "Firefox ESR",
     "last 2 Safari versions",
     "last 1 Edge versions"
-  ]
+  ],
+  "author": "Interaction Design Foundation",
+  "description": "IDF Release helper"
 }
