@@ -135,9 +135,17 @@
 <style>
   :root {
     --blue: rgba(21, 102, 255, 0.67);
+    --white: rgb(255, 255, 255);
+    --gray: rgb(249, 249, 249);
     --spacing-sm: 10px;
     --spacing-md: 20px;
     --spacing-lg: 50px;
+  }
+
+  html {
+    padding: 0;
+    margin: 0;
+    background-color: var(--gray);
   }
 
   h1 {
@@ -164,8 +172,8 @@
 
   .step {
     margin-bottom: var(--spacing-lg);
-    border: var(--blue) 1px dashed;
-    padding: var(--spacing-sm);
+    background-color: var(--white);
+    padding: var(--spacing-md);
   }
 
   [disabled] {

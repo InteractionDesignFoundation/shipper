@@ -61,7 +61,7 @@
                 required
                 minlength="10"
                 pattern="^Release [0-9.A-Z]{3,}$"
-                placeholder="Current milestone title"
+                placeholder="Release X.Y.Z"
                 list="possibleReleaseNames">
               <datalist id="possibleReleaseNames">
                 <option
