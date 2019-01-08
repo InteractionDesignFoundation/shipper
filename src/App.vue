@@ -56,9 +56,9 @@
     <section
       v-if="isDeployed"
       class="step">
-      <h2 class="title">🏁 That's it, your are awesome!</h2>
+      <h2 class="title">🏁 That's it, you are awesome!</h2>
       <p>
-        Please be online next 1 hour and be ready to solve all possible critical errors.
+        Please stay online for the next 1 hour to solve possible critical errors.
       </p>
       <p>
         <a href="https://github.com/InteractionDesignFoundation/IDF-web/blob/develop/docs/servers/deployment/checklist--after-deployment.md">After deployment checklist</a>
