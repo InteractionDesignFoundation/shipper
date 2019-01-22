@@ -106,7 +106,7 @@ Closed issues: ${milestone.url}?closed=1`
           return emojies.join('');
         });
 
-        return `${prefixes.join('')}${issue.title}`;
+        return `${prefixes.join('')} ${issue.title}`;
       },
     },
   }
