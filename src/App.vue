@@ -25,44 +25,29 @@
       class="step"
       @new-milestone-created="onNewMilestoneCreated"/>
 
-    <Merge
-      v-if="selectedMilestone"
-      :octo-rest-repo-client="octoRestRepoClient"
-      class="step"
-      base-branch="master"
-      head-branch="develop"
-      @changes-merged="onChangedMerged"/>
-
     <Release
-      v-if="isChangedMerged"
+      v-if="createdMilestone"
       :octo-rest-repo-client="octoRestRepoClient"
       :milestone="selectedMilestone"
       class="step"
       @release-created="onReleaseCreated"/>
 
-    <Deployment
-      v-if="createdRelease"
-      :deploy-trigger-webhook-url="deployTriggerWebhookUrl"
-      class="step"
-      @deployed="onDeployed"/>
-
-    <Merge
-      v-if="isDeployed"
-      :octo-rest-repo-client="octoRestRepoClient"
-      class="step"
-      base-branch="develop"
-      head-branch="master"/>
-
     <section
-      v-if="isDeployed"
+      v-if="createdRelease"
       class="step">
-      <h2 class="title">🏁 That's it, you are awesome!</h2>
-      <p>
-        Please stay online for the next 1 hour to solve possible critical errors.
-      </p>
-      <p>
-        <a href="https://github.com/InteractionDesignFoundation/IDF-web/blob/develop/docs/servers/deployment/checklist--after-deployment.md">After deployment checklist</a>
-      </p>
+      <h2 class="title">🏁 That's it, you are awesome! 🦄</h2>
+      <ol class="list">
+        <li>
+          <strong>Please stay online for the next 1+ hour(s)</strong> to solve possible errors caused by a new release.
+          <ol class="list">
+            <li>In case of CI build error we will be notified on <code>#dev</code> channel ("[Build failed]")</li>
+            <li>In case of deploy error we will notified on <code>#dev</code> channel ("Failed Deployment")</li>
+            <li>In case of important runtime errors we will notified on <code>#error--production</code> and <code>#js-errors-production</code> slack channels</li>
+            <li>In case of success you will receive an notification on <code>#accouncements</code> slack channel</li>
+          </ol>
+        </li>
+        <li>Check <a href="https://github.com/InteractionDesignFoundation/IDF-web/blob/develop/docs/servers/deployment/checklist--after-deployment.md" target="_blank">After deployment checklist</a> </li>
+      </ol>
     </section>
   </main>
 </template>
@@ -72,9 +57,7 @@
   import Settings from './components/Settings.vue'
   import MilestoneSelector from './components/MilestoneSelector.vue'
   import Milestone from './components/Milestone.vue'
-  import Merge from './components/Merge.vue'
   import Release from './components/Release.vue'
-  import Deployment from './components/Deployment.vue'
 
   export default {
     name: 'App',
@@ -82,25 +65,16 @@
       Settings,
       MilestoneSelector,
       Milestone,
-      Merge,
       Release,
-      Deployment,
     },
     data() {
       return {
         octoGraphClient: undefined,
         octoRestRepoClient: undefined,
+        // steps
         selectedMilestone: undefined,
-
-        isChangedMerged: false,
-
         createdMilestone: undefined,
-
         createdRelease: undefined,
-
-        deployTriggerWebhookUrl: '',
-
-        isDeployed: false,
       };
     },
     methods: {
@@ -116,8 +90,6 @@
           .errorType('json')
           .auth(`Bearer ${settings.githubAccessToken}`)
           .options({mode: 'cors'});
-
-        this.deployTriggerWebhookUrl = settings.deployTriggerWebhookUrl;
       },
       onMilestoneChanged: function (selectedMilestone) {
         this.selectedMilestone = selectedMilestone;
@@ -125,14 +97,8 @@
       onNewMilestoneCreated: function (createdMilestone) {
         this.createdMilestone = createdMilestone;
       },
-      onChangedMerged: function () {
-        this.isChangedMerged = true;
-      },
       onReleaseCreated: function (createdRelease) {
         this.createdRelease = createdRelease;
-      },
-      onDeployed: function () {
-        this.isDeployed = true;
       },
     },
   }
@@ -194,5 +160,11 @@
   .hero__image {
     max-height: 100px;
     object-fit: contain;
+  }
+  .list {
+    list-style-position: inside;
+  }
+  .list .list {
+    padding-left: 4ch;
   }
 </style>
