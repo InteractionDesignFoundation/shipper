@@ -28,6 +28,7 @@
     <Release
       v-if="createdMilestone"
       :octo-rest-repo-client="octoRestRepoClient"
+      :octo-graph-client="octoGraphClient"
       :milestone="selectedMilestone"
       class="step"
       @release-created="onReleaseCreated"/>

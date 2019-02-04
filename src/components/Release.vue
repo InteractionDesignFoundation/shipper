@@ -1,33 +1,38 @@
 <template>
   <section :disabled="createdRelease">
-    <h2 class="title">Release</h2>
-    <div class="field">
-      <label 
-        for="releaseName" 
-        class="label">Release name</label>
-      <input 
-        id="releaseName" 
-        v-model="releaseName" 
-        type="text"
-        placeholder="Example: 3.10.2"
-        class="input">
-    </div>
-    <div class="field">
-      <label 
-        for="releaseNotes" 
-        class="label">Release notes</label>
-      <textarea 
-        id="releaseNotes" 
-        v-model="releaseNotes" 
-        class="textarea" 
-        rows="10" 
-        placeholder="Release notes"/>
-    </div>
-    <div>
-      <button 
-        class="button is-warning" 
-        @click="createRelease">Create a new release</button>
-    </div>
+    <h2 class="title">Prepare a new Release</h2>
+    <form>
+      <div class="field">
+        <label
+          for="releaseName"
+          class="label">Release name</label>
+        <input
+          id="releaseName"
+          v-model="releaseName"
+          type="text"
+          placeholder="Example: 3.10.2"
+          class="input"
+          required
+          minlength="5">
+      </div>
+      <div class="field">
+        <label
+          for="releaseNotes"
+          class="label">Release notes</label>
+        <textarea
+          id="releaseNotes"
+          v-model="releaseNotes"
+          class="textarea"
+          rows="10"
+          placeholder="Release notes"/>
+      </div>
+      <div>
+        <button
+          type="submit"
+          class="button is-success"
+          @click="createRelease">Start a chain: Create a new git tag & GitHub release ➡︎ Run CI build ➡︎ Deploy (if CI build is green)</button>
+      </div>
+    </form>
   </section>
 </template>
 
@@ -45,6 +50,10 @@
         type: Object,
         required: true,
       },
+      octoGraphClient: {
+        type: Object,
+        required: true,
+      },
     },
     data() {
       return {
@@ -52,6 +61,7 @@
         releaseNotes: '',
         targetBranch: 'master',
         createdRelease: undefined,
+        previousRelease: undefined,
       };
     },
     watch: {
@@ -61,10 +71,37 @@
       },
     },
     created: function () {
-      this.releaseName = this.generateReleaseName(this.milestone);
-      this.releaseNotes = this.generateReleaseNotes(this.milestone);
+      this.fetchLastReleases()
+        .then(releases => {
+          this.previousRelease = releases.find(release => release.isDraft === false && release.isPrerelease === false);
+          this.releaseName = this.generateReleaseName(this.milestone);
+          this.releaseNotes = this.generateReleaseNotes(this.milestone);
+        });
     },
     methods: {
+      fetchLastReleases: function () {
+        const query = `
+                 query {
+                  repository(owner: "InteractionDesignFoundation", name: "IDF-web") {
+                    releases(first: 5, orderBy: {field: CREATED_AT, direction: DESC}) {
+                      nodes {
+                        name
+                        tagName
+                        isDraft
+                        isPrerelease
+                        author {
+                          name
+                        }
+                        publishedAt
+                      }
+                    }
+                  }
+                }`;
+        return this.octoGraphClient
+          .json({query: query})
+          .post()
+          .json(json => json.data.repository.releases.nodes)
+      },
       generateReleaseName: function (milestone) {
         const semverNumbers = milestone.title.match(/[0-9.]+/);
         return semverNumbers ? semverNumbers[0] : '?';
@@ -76,6 +113,8 @@
         });
         return `Release notes:
 ${[...changelogItems].join('')}
+Diff: https://github.com/InteractionDesignFoundation/IDF-web/compare/${this.previousRelease.tagName}...${this.releaseName}
+
 Closed issues: ${milestone.url}?closed=1`
       },
       createRelease: function () {
