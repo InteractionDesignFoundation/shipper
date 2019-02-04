@@ -1,6 +1,6 @@
 <template>
   <section>
-    <h2 class="title">Milestone: <a
+    <h2 class="title">Update a Milestone: <a
       :href="milestone.url"
       target="_blank">{{ milestone.title }}</a></h2>
     <div class="field is-grouped is-grouped-multiline">
@@ -75,8 +75,9 @@
                 :disabled="milestone.state.toLowerCase() !== 'open'"
                 class="button is-success"
                 type="submit">
-                Rename and close current milestone
+                Rename and close selected milestone
               </button>
+              <small class="hint">Hint: we follow <a href="https://semver.org/" target="_blank">semver</a></small>
             </div>
           </div>
         </fieldset>
@@ -100,6 +101,7 @@
                 type="submit">
                 Create a new milestone
               </button>
+              <small class="hint">Hint: in most cases it will be "Next Release"</small>
             </div>
           </div>
         </fieldset>
@@ -129,6 +131,7 @@
     data() {
       return {
         thisMilestoneTitle: '',
+        previousMilestoneOriginalTitle: this.milestone.title,
         nextMilestoneTitle: this.milestone.title,
         createdMilestone: undefined,
         milestoneTitles: [],
@@ -224,6 +227,12 @@
 <style scoped>
   fieldset {
     border: none;
+  }
+
+  .hint {
+    display: inline-block;
+    vertical-align: bottom;
+    padding-left: 2ch;
   }
 
   .gh-label {
