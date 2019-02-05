@@ -39,15 +39,15 @@
       <h2 class="title">🏁 That's it, you are awesome! 🦄</h2>
       <ol class="list">
         <li>
-          <strong>Please stay online for the next 1+ hour(s)</strong> to solve possible errors caused by a new release.
+          <strong>Please stay online for the next 1+ hour(s)</strong> to solve possible errors caused by the new release.
           <ol class="list">
-            <li>In case of CI build error we will be notified on <code>#dev</code> channel ("[Build failed]")</li>
-            <li>In case of deploy error we will notified on <code>#dev</code> channel ("Failed Deployment")</li>
-            <li>In case of important runtime errors we will notified on <code>#error--production</code> and <code>#js-errors-production</code> slack channels</li>
-            <li>In case of success you will receive an notification on <code>#accouncements</code> slack channel</li>
+            <li>In case of CI build errors, we will be notified on <code>#dev</code> channel ("[Build failed]")</li>
+            <li>In case of deploy errors, we will be notified on <code>#dev</code> channel ("Failed Deployment")</li>
+            <li>In case of important runtime errors, we will be notified on <code>#error--production</code> and <code>#js-errors-production</code> channels</li>
+            <li>In case of success, you will receive a notification on <code>#accouncements</code> channel</li>
           </ol>
         </li>
-        <li>Check <a href="https://github.com/InteractionDesignFoundation/IDF-web/blob/develop/docs/servers/deployment/checklist--after-deployment.md" target="_blank">After deployment checklist</a> </li>
+        <li>Check <a href="https://github.com/InteractionDesignFoundation/IDF-web/blob/develop/docs/servers/deployment/checklist--after-deployment.md" target="_blank">After Deployment Checklist</a> </li>
       </ol>
     </section>
   </main>
