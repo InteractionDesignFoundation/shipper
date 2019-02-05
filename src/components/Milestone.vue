@@ -28,7 +28,7 @@
         <span
           v-if="issue.state==='OPEN'"
           :key="issue.id"
-          class="has-text-danger">[OPEN]</span>
+          class="has-text-danger">[OPEN] </span>
         <a
           :href="issue.url"
           target="_blank">#{{ issue.number }}</a> {{ issue.title }}
@@ -60,7 +60,7 @@
                 type="text"
                 required
                 minlength="10"
-                pattern="^Release [0-9.A-Z]{3,}$"
+                pattern="^Release [0-9.A-Z]{5,}$"
                 placeholder="Release X.Y.Z"
                 list="possibleReleaseNames">
               <datalist id="possibleReleaseNames">
