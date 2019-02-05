@@ -1,7 +1,7 @@
 <template>
   <section :disabled="createdRelease">
     <h2 class="title">Prepare a new Release</h2>
-    <form>
+    <form @submit.prevent="createRelease">
       <div class="field">
         <label
           for="releaseName"
@@ -29,8 +29,7 @@
       <div>
         <button
           type="submit"
-          class="button is-success"
-          @click="createRelease">Start a chain: Create a new git tag & GitHub release ➡︎ Run CI build ➡︎ Deploy (if CI build is green)</button>
+          class="button is-success">Start a chain: Create a new git tag & GitHub release ➡︎ Run CI build ➡︎ Deploy (if CI build is green)</button>
       </div>
     </form>
   </section>
