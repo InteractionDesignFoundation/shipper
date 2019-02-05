@@ -1,6 +1,6 @@
 <template>
   <section>
-    <h2 class="title">Select a milestone</h2>
+    <h2 class="title">Select a milestone to close</h2>
     <label 
       for="milestoneSelector" 
       class="label">Please select a milestone to close</label>
@@ -17,6 +17,10 @@
           :value="milestone">{{ milestone.title }} ({{ milestone.state }})</option>
       </select>
     </div>
+
+    <button class="button is-small" type="button" title="Refresh a list of milestones" @click="loadMilestones">
+      ↻
+    </button>
   </section>
 </template>
 
@@ -41,18 +45,14 @@
       }
     },
     created: function () {
-      this.fetchMilestones().then(milestones => {
-        this.milestones = milestones;
-        this.$emit('milestones-loaded');
-        return milestones;
-      });
+      this.loadMilestones();
     },
     methods: {
       fetchMilestones: function () {
         const query = `
                  query {
                    repository(owner:"InteractionDesignFoundation", name:"IDF-web") {
-                   milestones(last:5 states: OPEN) {
+                   milestones(last:10 states: OPEN) {
                      nodes {
                          number
                          title
@@ -82,6 +82,13 @@
           .post()
           .json(json => json.data.repository.milestones.nodes)
       },
+      loadMilestones: function () {
+        this.fetchMilestones().then(milestones => {
+          this.milestones = milestones;
+          this.$emit('milestones-loaded');
+          return milestones;
+        });
+      }
     },
   }
 </script>
