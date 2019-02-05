@@ -58,7 +58,7 @@
       return {
         releaseName: '',
         releaseNotes: '',
-        targetBranch: 'master',
+        targetBranch: 'develop',
         createdRelease: undefined,
         previousRelease: undefined,
       };
