@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section :disabled="createdMilestone">
     <h2 class="title">Update a Milestone: <a
       :href="milestone.url"
       target="_blank">{{ milestone.title }}</a></h2>
@@ -77,7 +77,7 @@
                 type="submit">
                 Rename and close selected milestone
               </button>
-              <small class="hint">Hint: we follow <a href="https://semver.org/" target="_blank">semver</a></small>
+              <small class="hint">Hint: we follow <a href="https://semver.org/" target="_blank">semver 2.0</a></small>
             </div>
           </div>
         </fieldset>
