@@ -47,6 +47,7 @@
             <li>In case of success, you will receive a notification on <code>#announcements</code> channel</li>
           </ol>
         </li>
+        <li>Check <a href="https://app.codeship.com/projects/79159" target="_blank">app status on Codeship CI </a></li>
         <li>Check <a href="https://github.com/InteractionDesignFoundation/IDF-web/blob/develop/docs/servers/deployment/checklist--after-deployment.md" target="_blank">After Deployment Checklist</a> </li>
       </ol>
     </section>
