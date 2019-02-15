@@ -44,7 +44,7 @@
             <li>In case of CI build errors, we will be notified on <code>#dev</code> channel ("[Build failed]")</li>
             <li>In case of deploy errors, we will be notified on <code>#dev</code> channel ("Failed Deployment")</li>
             <li>In case of important runtime errors, we will be notified on <code>#error--production</code> and <code>#js-errors-production</code> channels</li>
-            <li>In case of success, you will receive a notification on <code>#accouncements</code> channel</li>
+            <li>In case of success, you will receive a notification on <code>#announcements</code> channel</li>
           </ol>
         </li>
         <li>Check <a href="https://github.com/InteractionDesignFoundation/IDF-web/blob/develop/docs/servers/deployment/checklist--after-deployment.md" target="_blank">After Deployment Checklist</a> </li>
