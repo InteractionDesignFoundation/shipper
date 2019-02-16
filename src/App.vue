@@ -48,7 +48,7 @@
           </ol>
         </li>
         <li>Check <a href="https://app.codeship.com/projects/79159" target="_blank">app status on Codeship CI </a></li>
-        <li>Check <a href="https://github.com/InteractionDesignFoundation/IDF-web/blob/develop/docs/servers/deployment/checklist--after-deployment.md" target="_blank">After Deployment Checklist</a> </li>
+        <li>Check <a href="https://github.com/InteractionDesignFoundation/IDF-web/blob/develop/docs/workflows/deployment/checklist--after-deployment.md" target="_blank">After Deployment Checklist</a> </li>
       </ol>
     </section>
   </main>
