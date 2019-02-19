@@ -21,6 +21,10 @@
     <button class="button is-small" type="button" title="Refresh a list of milestones" @click="loadMilestones">
       ↻
     </button>
+    <div>
+      <small>in 98% cases it should be <code>Next Release</code> milestone</small>
+
+    </div>
   </section>
 </template>
 
