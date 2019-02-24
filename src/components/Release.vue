@@ -108,14 +108,33 @@
       },
       generateReleaseNotes: function (milestone) {
         const changelogItems = new Set();
-        milestone.issues.nodes.forEach((issue) => {
-          changelogItems.add(` - ${this.getChangelogTextForIssue(issue)}\n`);
-        });
+        milestone.issues.nodes
+          .filter((issue) => {
+            const labelNames = issue.labels.nodes.map(label => label.name);
+            return !labelNames.includes('hide from release notes');
+          })
+          .forEach((issue) => {
+            changelogItems.add(` - ${this.getChangelogTextForIssue(issue)}\n`);
+          });
         return `Release notes:
 ${[...changelogItems].join('')}
 Diff: https://github.com/InteractionDesignFoundation/IDF-web/compare/${this.previousRelease.tagName}...${this.releaseName}
 
 Closed issues: ${milestone.url}?closed=1`
+      },
+      getChangelogTextForIssue: function (issue) {
+        const prefixes = issue.labels.nodes.map(label => {
+          const regex = emojiRegex();
+          let match;
+          const emojies = [];
+          // eslint-disable-next-line no-cond-assign
+          while (match = regex.exec(label.name)) {
+            emojies.push(match[0]);
+          }
+          return emojies.join('');
+        });
+
+        return `${prefixes.join('')} ${issue.title}`;
       },
       createRelease: function () {
         /** @see https://developer.github.com/v3/repos/releases/#create-a-release */
@@ -132,20 +151,6 @@ Closed issues: ${milestone.url}?closed=1`
             this.$emit('release-created', createdRelease);
             return this.createdRelease = createdRelease;
           });
-      },
-      getChangelogTextForIssue: function (issue) {
-        const prefixes = issue.labels.nodes.map(label => {
-          const regex = emojiRegex();
-          let match;
-          const emojies = [];
-          // eslint-disable-next-line no-cond-assign
-          while (match = regex.exec(label.name)) {
-            emojies.push(match[0]);
-          }
-          return emojies.join('');
-        });
-
-        return `${prefixes.join('')} ${issue.title}`;
       },
     },
   }
