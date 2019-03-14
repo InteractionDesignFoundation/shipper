@@ -51,7 +51,12 @@
     <div>
 
       <form @submit.prevent="renameAndCloseCurrentMilestone">
-        <fieldset :disabled="milestone.state !== 'OPEN'">
+        <div  v-if="openIssuesNumber !== 0" class="notification is-danger">
+          <p>⚠️ There are some open issues in the selected milestone.</p>
+          <p>Please close or remove them from the milestone to be able to close the milestone.</p>
+        </div>
+
+        <fieldset :disabled="milestone.state !== 'OPEN' || openIssuesNumber !== 0">
             <div class="field has-addons">
               <div class="control">
               <input
