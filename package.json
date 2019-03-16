@@ -10,7 +10,7 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
-    "emoji-regex": "^7.0.1",
+    "emoji-regex": "^8.0.0",
     "vue": "^2.5.17",
     "wretch": "^1.4.0"
   },
