@@ -194,9 +194,8 @@
           const query = `
                  query {
                    repository(owner:"InteractionDesignFoundation", name:"IDF-web") {
-                   milestones(first:5 states: CLOSED, orderBy: {field:NUMBER, direction:DESC}) {
+                   milestones(first:10 states: CLOSED, orderBy: {field:UPDATED_AT, direction:DESC}) {
                      nodes {
-                         number
                          title
                        }
                    }
