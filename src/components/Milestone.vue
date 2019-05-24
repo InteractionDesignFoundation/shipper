@@ -117,6 +117,8 @@
 </template>
 
 <script>
+  import * as compareVersions from 'compare-versions';
+
   export default {
     name: "Milestone",
     props: {
@@ -204,8 +206,15 @@
           return this.octoGraphClient
               .json({query: query})
               .post()
-              .json(json => json.data.repository.milestones.nodes.find(milestone => milestone.title.includes('Release')))
-              .then(milestone => milestone.title);
+              .json(json => json.data.repository.milestones.nodes
+                .map(milestone => milestone.title)
+                .filter(milestoneTitle => milestoneTitle.includes('Release'))
+                .map(milestoneTitle => milestoneTitle.replace('Release ', ''))
+                .sort(compareVersions)
+              )
+              .then(latestReleaseMilestoneTitles => {
+                return latestReleaseMilestoneTitles[latestReleaseMilestoneTitles.length - 1];
+              });
       },
       getSuggestedMilestoneTitles: function (currentReleaseNumber, prefix = '') {
           const milestoneTitles = [];
