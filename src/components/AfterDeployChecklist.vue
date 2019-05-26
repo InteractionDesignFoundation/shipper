@@ -3,11 +3,6 @@
     class="step">
     <h2 class="title">🏁 That's it, you are awesome! 🦄</h2>
 
-    <div class="notification is-danger">
-      ⚠️ Currently we have <a href="https://github.com/InteractionDesignFoundation/IDF-web/issues/12589" target="_blank">a known deployment process bug</a>: orphan PHP processes. You will be notified about it on <code>#error--production</code> and need to restart nginx in this case (the simplest way to do it is
-      <a href="https://forge.laravel.com/servers/41762#/websites" target="_blank">forge UI</a>).
-    </div>
-
     <p>
       <strong>Please stay online for the next 1+ hour(s)</strong> to solve possible errors caused by the new release.
     </p>
