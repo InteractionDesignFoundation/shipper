@@ -82,7 +82,7 @@
                 type="submit">
                 Rename and close selected milestone
               </button>
-              <small class="hint">Hint: we follow <a href="https://semver.org/" target="_blank">semver 2.0</a></small>
+              <small class="hint">Hint: we follow <a href="https://semver.org/" target="_blank">SemVer 2.0</a></small>
             </div>
           </div>
         </fieldset>
