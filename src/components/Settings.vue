@@ -21,7 +21,7 @@
           </div>
           <small>Need help? <a
             href="https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/"
-            target="_blank">Create a GitHub personal access token</a>, (<code>repo</code> permission is enough to create a Release and fetch some meta info).
+            target="_blank">Create a GitHub personal access token</a>, (<code>repo</code> permission is enough to create a Release and fetch Releases, Issues and Milestones info).
           </small>
         </div>
 
