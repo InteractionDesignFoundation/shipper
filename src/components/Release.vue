@@ -116,11 +116,13 @@
           .forEach((issue) => {
             changelogItems.add(` - ${this.getChangelogTextForIssue(issue)}\n`);
           });
-        return `Release notes:
-${[...changelogItems].join('')}
-Diff: https://github.com/InteractionDesignFoundation/IDF-web/compare/${this.previousRelease.tagName}...${this.releaseName}
+        const body = `Release notes:\n${[...changelogItems].join('')}`;
+        let footer = `Code Diff: https://github.com/InteractionDesignFoundation/IDF-web/compare/${this.previousRelease.tagName}...${this.releaseName}`;
+        if (milestone.issues.nodes.length > 0) {
+          footer += `\nClosed issues: ${milestone.url}?closed=1`
+        }
 
-Closed issues: ${milestone.url}?closed=1`
+        return `${body}\n${footer}`;
       },
       getChangelogTextForIssue: function (issue) {
         const prefixes = issue.labels.nodes.map(label => {
