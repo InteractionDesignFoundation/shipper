@@ -9827,9 +9827,9 @@ wrappy@1:
   integrity sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8=
 
 wretch@^1.5:
-  version "1.5.2"
-  resolved "https://registry.yarnpkg.com/wretch/-/wretch-1.5.2.tgz#e9ca28a041cf5cbeb68e0fc4598dac85057e91de"
-  integrity sha512-yHFHZVK3aiwtW4dMW4LpN7hJJepCbbYJTFutOfWZLfBSTsjLJa8cobPmSh6AgTEIMwryHeiJcHG+lP1IZHG2vg==
+  version "1.5.4"
+  resolved "https://registry.yarnpkg.com/wretch/-/wretch-1.5.4.tgz#785b54ec8ec4b5a5d44261d9e9c2dc60c6bb3ee6"
+  integrity sha512-FvH5xhARbAO7rfu6jUEQSpAp/eRFBjhat9PGyiXz2JwBvVC9Z0gNGRSNaaLWagslnJj+xo3JTAAQ0aZAgZ7gNg==
 
 write-file-atomic@2.4.1:
   version "2.4.1"
