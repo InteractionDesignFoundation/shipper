@@ -16,7 +16,7 @@
     "wretch": "^1.5"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.8",
+    "@vue/cli-plugin-babel": "^3.11",
     "@vue/cli-plugin-eslint": "^3.8",
     "@vue/cli-plugin-unit-jest": "^3.11",
     "@vue/cli-service": "^3.9",
