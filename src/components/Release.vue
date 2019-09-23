@@ -1,6 +1,9 @@
 <template>
   <section :disabled="createdRelease">
     <h2 class="title">Prepare a new Release</h2>
+    <p>
+      <a href="https://github.com/InteractionDesignFoundation/IDF-web/compare/{{previousRelease}}...develop" target="_blank">Preview changes</a>.
+    </p>
     <form @submit.prevent="createRelease">
       <div class="field">
         <label
