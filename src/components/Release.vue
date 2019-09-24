@@ -2,7 +2,7 @@
   <section :disabled="createdRelease">
     <h2 class="title">Prepare a new Release</h2>
     <p v-if="previousRelease">
-      <a href="https://github.com/InteractionDesignFoundation/IDF-web/compare/{{previousRelease.tagName}}...develop" target="_blank">Preview changes</a>.
+      <a :href="`//github.com/InteractionDesignFoundation/IDF-web/compare/${previousRelease.tagName}...develop`" target="_blank">Preview changes</a>.
     </p>
     <form @submit.prevent="createRelease">
       <div class="field">
