@@ -1,8 +1,8 @@
 <template>
   <section :disabled="createdRelease">
     <h2 class="title">Prepare a new Release</h2>
-    <p v-if="previousRelease">
-      <a :href="`//github.com/InteractionDesignFoundation/IDF-web/compare/${previousRelease.tagName}...develop`" target="_blank">Preview changes</a>.
+    <p v-if="codeDiffUrl">
+      <a :href="codeDiffUrl" target="_blank">Preview changes on GitHub</a>.
     </p>
     <form @submit.prevent="createRelease">
       <div class="field">
@@ -71,6 +71,14 @@
       milestone: function (selectedMilestone) {
         this.releaseName = this.generateReleaseName(selectedMilestone);
         this.releaseNotes = this.generateReleaseNotes(selectedMilestone);
+      },
+    },
+    computed: {
+      codeDiffUrl: function () {
+        if (!this.previousRelease) {
+          return undefined;
+        }
+        return `https://github.com/InteractionDesignFoundation/IDF-web/compare/${this.previousRelease.tagName}...develop`;
       },
     },
     created: function () {
