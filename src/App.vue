@@ -19,11 +19,12 @@
       :octo-graph-client="octoGraphClient"
       :octo-rest-repo-client="octoRestRepoClient"
       class="step"
-      @new-milestone-created="onNewMilestoneCreated"
+      @new-milestone-created="completeMilestoneUpdateStep"
+      @new-milestone-creating-skipped="completeMilestoneUpdateStep"
     />
 
     <Release
-      v-if="createdMilestone"
+      v-if="milestoneUpdateCompleted"
       :octo-rest-repo-client="octoRestRepoClient"
       :octo-graph-client="octoGraphClient"
       :milestone="selectedMilestone"
@@ -58,7 +59,7 @@ export default {
       octoRestRepoClient: undefined,
       // steps
       selectedMilestone: undefined,
-      createdMilestone: undefined,
+      milestoneUpdateCompleted: false,
       createdRelease: undefined,
     }
   },
@@ -79,8 +80,8 @@ export default {
     onMilestoneChanged: function(selectedMilestone) {
       this.selectedMilestone = selectedMilestone
     },
-    onNewMilestoneCreated: function(createdMilestone) {
-      this.createdMilestone = createdMilestone
+    completeMilestoneUpdateStep: function() {
+      this.milestoneUpdateCompleted = true
     },
     onReleaseCreated: function(createdRelease) {
       this.createdRelease = createdRelease

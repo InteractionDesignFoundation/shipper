@@ -133,6 +133,9 @@
               <button class="button is-success" type="submit">
                 Create a new milestone
               </button>
+              <button @click="skipCreatingNewMilestone" class="button is-small" type="button" title="Do not create a new milestone">
+                Skip
+              </button>
               <small class="hint"
                 >Hint: in most cases it will be "Next Release"</small
               >
@@ -234,6 +237,9 @@ export default {
             `Error ${error.response.statusText}: ${error.json.message} ${errorsAsText}`
           )
         })
+    },
+    skipCreatingNewMilestone: function() {
+      this.$emit('new-milestone-creating-skipped')
     },
     getCurrentReleaseNumber: function() {
       const query = `
