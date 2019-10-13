@@ -34,7 +34,7 @@
       <li>
         Check
         <a
-          href="https://github.com/InteractionDesignFoundation/IDF-web/blob/develop/docs/workflows/deployment/checklist--after-deployment.md"
+          href="https://github.com/InteractionDesignFoundation/IDF-web/blob/develop/docs/workflows/deployment/after-deployment-checklist.md"
           target="_blank"
           >After Deployment Checklist</a
         >.
