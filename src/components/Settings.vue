@@ -6,8 +6,39 @@
 
       <form @submit.prevent="save">
         <div class="field">
+          <label for="githubOrganisation" class="label"
+            >GitHub Organisation</label
+          >
+          <div class="control">
+            <input
+              id="githubOrganisation"
+              v-model="githubOrganisation"
+              class="input"
+              type="text"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="githubRepository" class="label"
+            >GitHub Repository Name</label
+          >
+          <div class="control">
+            <input
+              id="githubRepository"
+              v-model="githubRepository"
+              class="input"
+              type="text"
+              required
+            />
+          </div>
+        </div>
+
+
+        <div class="field">
           <label for="githubAccessToken" class="label"
-            >GitHub access token</label
+            >GitHub Access Token</label
           >
           <div class="control">
             <input
@@ -47,12 +78,14 @@ export default {
   props: {},
   data() {
     return {
+      githubOrganisation: localStorage.getItem('githubOrganisation') || '',
+      githubRepository: localStorage.getItem('githubRepository') || '',
       githubAccessToken: localStorage.getItem('githubAccessToken') || '',
       areSettingsOpen: true,
     }
   },
   mounted: function() {
-    const areSettingsSaved = this.githubAccessToken
+    const areSettingsSaved = this.githubOrganisation && this.githubRepository && this.githubAccessToken
     if (areSettingsSaved) {
       this.areSettingsOpen = false
       this.emitEventWithSettings()
@@ -60,11 +93,15 @@ export default {
   },
   methods: {
     save: function() {
+      localStorage.setItem('githubOrganisation', this.githubOrganisation)
+      localStorage.setItem('githubRepository', this.githubRepository)
       localStorage.setItem('githubAccessToken', this.githubAccessToken)
       this.emitEventWithSettings()
     },
     emitEventWithSettings: function() {
       this.$emit('settings-set', {
+        githubOrganisation: this.githubOrganisation,
+        githubRepository: this.githubRepository,
         githubAccessToken: this.githubAccessToken,
       })
     },
