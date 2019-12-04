@@ -258,7 +258,7 @@ export default {
         .json(json =>
           json.data.repository.milestones.nodes
             .map(milestone => milestone.title)
-            .filter(milestoneTitle => milestoneTitle.includes('Release'))
+            .filter(milestoneTitle => milestoneTitle.startsWith('Release'))
             .map(milestoneTitle => milestoneTitle.replace('Release ', ''))
             .sort(compareVersions)
         )
