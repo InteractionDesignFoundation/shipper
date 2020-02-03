@@ -1280,7 +1280,7 @@
     semver "^6.0.0"
     string.prototype.padstart "^3.0.0"
 
-"@vue/cli-shared-utils@^4.1.1", "@vue/cli-shared-utils@^4.1.2":
+"@vue/cli-shared-utils@^4.1.2":
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/@vue/cli-shared-utils/-/cli-shared-utils-4.1.2.tgz#d33984c8790ad869ef77f5229abd3e8e584fe58b"
   integrity sha512-uQAVqxCWdL5ipZ0TPu6SVsdokQp4yHt8SzzpUGhq8TkW4vwalGddJAAJrqZHMl91ZTIJ4p4ixofmCaaJo5rSRA==
@@ -9840,10 +9840,10 @@ wrappy@1:
   resolved "https://registry.yarnpkg.com/wrappy/-/wrappy-1.0.2.tgz#b5243d8f3ec1aa35f1364605bc0d1036e30ab69f"
   integrity sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8=
 
-wretch@^1.6:
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/wretch/-/wretch-1.6.0.tgz#672fb637f9eda21f08ac656dc84a758e30093934"
-  integrity sha512-fy5Z7uISIEsAyxVrbLXWSUEwcl5JePCWwNKnsC3tB7dRFroeJl8MVoGTDS0lhukOX4gSig2j9IF8T9yM+YkuUA==
+wretch@^1.7:
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/wretch/-/wretch-1.7.1.tgz#3e1482d7beaa845fe2c8459f319cbfecac5d47f3"
+  integrity sha512-2ki4IUOnXVUtjDaJD/ts6ImpDMd0WWl5tolO8RG/aYD77S2cwekG7TKtQBRAXdDZYKUDwbnu6WfMCFA+HqPKWw==
 
 write-file-atomic@2.4.1:
   version "2.4.1"
