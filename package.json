@@ -11,7 +11,7 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
-    "compare-versions": "^3.5.1",
+    "compare-versions": "^3.6.0",
     "emoji-regex": "^8.0.0",
     "vue": "^2.6",
     "wretch": "^1.7"
