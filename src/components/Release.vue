@@ -4,6 +4,20 @@
     <p v-if="codeDiffUrl">
       <a :href="codeDiffUrl" target="_blank">Preview changes on GitHub</a>.
     </p>
+
+    <details>
+      <summary>Improve readability by using emojiChangelog</summary>
+      <ul>
+        <li>✨ - improvement</li>
+        <li>🐞 - bugfix</li>
+        <li>⚙ - technical issue️</li>
+        <li>⚡ - urgent</li>
+        <li>🛁 - cleanup</li>
+        <li>⭐ - minor feature</li>
+        <li>👑 - major feature</li>
+      </ul>
+    </details>
+
     <form @submit.prevent="createRelease">
       <div class="field">
         <label for="releaseName" class="label">Release name</label>
