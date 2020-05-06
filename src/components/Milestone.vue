@@ -61,6 +61,12 @@
     </p>
 
     <hr />
+
+    <p>
+      <b>Current release number</b>:
+      <a href="https://github.com/InteractionDesignFoundation/IDF-web/releases">{{ currentReleaseNumber }}</a>
+    </p>
+
     <div>
       <form @submit.prevent="renameAndCloseCurrentMilestone">
         <div v-if="openIssuesNumber !== 0" class="notification is-danger">
@@ -173,6 +179,7 @@ export default {
       nextMilestoneTitle: this.milestone.title,
       createdMilestone: undefined,
       milestoneTitles: [],
+      currentReleaseNumber: '',
     }
   },
   computed: {
@@ -188,10 +195,10 @@ export default {
   },
   created: function() {
     this.getCurrentReleaseNumber()
-      .then(currentReleaseNumber =>
-        this.getSuggestedMilestoneTitles(currentReleaseNumber, 'Release ')
-      )
-      .then(
+      .then(currentReleaseNumber => {
+        this.currentReleaseNumber = currentReleaseNumber;
+        return this.getSuggestedMilestoneTitles(currentReleaseNumber, 'Release ');
+      }).then(
         suggestedMilestoneTitles =>
           (this.milestoneTitles = suggestedMilestoneTitles)
       )
@@ -245,7 +252,7 @@ export default {
       const query = `
                  query {
                    repository(owner:"InteractionDesignFoundation", name:"IDF-web") {
-                   milestones(first:10 states: CLOSED, orderBy: {field:UPDATED_AT, direction:DESC}) {
+                   milestones(first:30 states: CLOSED, orderBy: {field:UPDATED_AT, direction:DESC}) {
                      nodes {
                          title
                        }
