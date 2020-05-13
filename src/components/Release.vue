@@ -6,7 +6,7 @@
     </p>
 
     <details>
-      <summary>Improve readability by using emojiChangelog</summary>
+      <summary>Improve changelog readability by using emoji</summary>
       <ul>
         <li>✨ - improvement</li>
         <li>🐞 - bugfix</li>
