@@ -9,12 +9,7 @@
 
     <ol class="list">
       <li>
-        In case of CI build errors, we will be notified on
-        <code>#dev</code> channel ("[Build failed]").
-      </li>
-      <li>
-        In case of deploy errors, we will be notified on
-        <code>#dev</code> channel ("Failed Deployment").
+        In case of CI build errors, we will be notified on your email.
       </li>
       <li>
         In case of important runtime errors, we will be notified on
@@ -23,7 +18,7 @@
       </li>
       <li>
         In case of success, you will receive a notification on
-        <code>#announcements</code> channel.
+        <code>#releases</code> channel.
       </li>
       <li>
         Check
