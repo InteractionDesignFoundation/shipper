@@ -1,12 +1,15 @@
 version: 2
 updates:
-- package-ecosystem: npm
-  directory: "/"
-  schedule:
-    interval: monthly
-    time: "04:00"
-  open-pull-requests-limit: 10
-  reviewers:
-  - hasan-wajahat
-  assignees:
-  - idf-bot
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: monthly
+      time: "04:00"
+    open-pull-requests-limit: 20
+    labels:
+      - "dependencies"
+      - "composer dependencies"
+    reviewers:
+      - hasan-wajahat
+    assignees:
+      - idf-bot
