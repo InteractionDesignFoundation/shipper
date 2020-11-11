@@ -59,7 +59,7 @@ export default {
     fetchMilestones: function() {
       const query = `
                  query {
-                   repository(owner:"InteractionDesignFoundation", name:"IDF-web") {
+                   repository(owner:"InteractionDesignFoundation", name:"IxDF-web") {
                    milestones(last:10 states: OPEN) {
                      nodes {
                          number

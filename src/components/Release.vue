@@ -94,7 +94,7 @@ export default {
       if (!this.previousRelease) {
         return undefined
       }
-      return `https://github.com/InteractionDesignFoundation/IDF-web/compare/${this.previousRelease.tagName}...develop`
+      return `https://github.com/InteractionDesignFoundation/IxDF-web/compare/${this.previousRelease.tagName}...develop`
     },
   },
   created: function() {
@@ -110,7 +110,7 @@ export default {
     fetchLastReleases: function() {
       const query = `
                  query {
-                  repository(owner: "InteractionDesignFoundation", name: "IDF-web") {
+                  repository(owner: "InteractionDesignFoundation", name: "IxDF-web") {
                     releases(first: 5, orderBy: {field: CREATED_AT, direction: DESC}) {
                       nodes {
                         name
@@ -145,7 +145,7 @@ export default {
           changelogItems.add(` - ${this.getChangelogTextForIssue(issue)}\n`)
         })
       const body = `Release notes:\n${[...changelogItems].join('')}`
-      let footer = `Code Diff: https://github.com/InteractionDesignFoundation/IDF-web/compare/${this.previousRelease.tagName}...${this.releaseName}`
+      let footer = `Code Diff: https://github.com/InteractionDesignFoundation/IxDF-web/compare/${this.previousRelease.tagName}...${this.releaseName}`
       if (milestone.issues.nodes.length > 0) {
         footer += `\nClosed issues: ${milestone.url}?closed=1`
       }

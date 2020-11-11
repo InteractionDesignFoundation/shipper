@@ -64,7 +64,7 @@
 
     <p>
       <b>Current release number</b>:
-      <a href="https://github.com/InteractionDesignFoundation/IDF-web/releases">{{ currentReleaseNumber }}</a>
+      <a href="https://github.com/InteractionDesignFoundation/IxDF-web/releases">{{ currentReleaseNumber }}</a>
     </p>
 
     <div>
@@ -251,7 +251,7 @@ export default {
     getCurrentReleaseNumber: function() {
       const query = `
                  query {
-                   repository(owner:"InteractionDesignFoundation", name:"IDF-web") {
+                   repository(owner:"InteractionDesignFoundation", name:"IxDF-web") {
                    milestones(first:30 states: CLOSED, orderBy: {field:UPDATED_AT, direction:DESC}) {
                      nodes {
                          title

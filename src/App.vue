@@ -72,7 +72,7 @@ export default {
         .options({ mode: 'cors' })
 
       this.octoRestRepoClient = wretch()
-        .url('https://api.github.com/repos/InteractionDesignFoundation/IDF-web')
+        .url('https://api.github.com/repos/InteractionDesignFoundation/IxDF-web')
         .errorType('json')
         .auth(`Bearer ${settings.githubAccessToken}`)
         .options({ mode: 'cors' })
