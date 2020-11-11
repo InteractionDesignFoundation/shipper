@@ -1,6 +1,6 @@
 {
   "name": "shipper",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -52,5 +52,5 @@
     "last 1 Edge versions"
   ],
   "author": "Interaction Design Foundation",
-  "description": "IDF Release helper: helps to create Releases and manage milestones on GitHub"
+  "description": "IxDF Release helper: helps to create Releases and manage milestones on GitHub"
 }
