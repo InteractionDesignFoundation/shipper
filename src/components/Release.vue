@@ -10,13 +10,19 @@
       <ul>
         <li>✨ - improvement</li>
         <li>🐞 - bugfix</li>
-        <li>⚙ - technical issue️</li>
+        <li>⚙️ - technical issue️</li>
         <li>⚡ - urgent</li>
         <li>🛁 - cleanup</li>
         <li>⭐ - minor feature</li>
         <li>👑 - major feature</li>
       </ul>
     </details>
+
+    <p>
+      Please write clean changelogs so non-technical staff can also read and understand it.
+      All technical changes please mark by ⚙️ emoji, so non-developers can easily ignore them.
+      Example: <code>⚙️ - Update composer dependencies</code>.
+    </p>
 
     <form @submit.prevent="createRelease">
       <div class="field">
