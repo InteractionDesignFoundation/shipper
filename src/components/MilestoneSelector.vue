@@ -1,14 +1,16 @@
 <template>
   <section>
     <h2 class="title">Select a milestone to close</h2>
-    <label for="milestoneSelector" class="label"
-      >Please select a milestone to close</label
-    >
+
     <p>
       We attach GitHub issues to Milestones.
       Closed milestone means issues attached to the milestone are ready
       to be shipped.
     </p>
+
+    <label for="milestoneSelector" class="label"
+      >Please select a milestone to close</label
+    >
     <div class="select is-primary is-medium">
       <select id="milestoneSelector" v-model="selectedMilestone">
         <option value="" disabled>Please select a milestone</option>
