@@ -6,13 +6,13 @@
 
       <form @submit.prevent="save">
         <div class="field">
-          <label for="githubOrganisation" class="label"
-            >GitHub Organisation</label
+          <label for="githubOrganization" class="label"
+            >GitHub Organization</label
           >
           <div class="control">
             <input
-              id="githubOrganisation"
-              v-model="githubOrganisation"
+              id="githubOrganization"
+              v-model="githubOrganization"
               class="input"
               type="text"
               required
@@ -78,14 +78,14 @@ export default {
   props: {},
   data() {
     return {
-      githubOrganisation: localStorage.getItem('githubOrganisation') || '',
+      githubOrganization: localStorage.getItem('githubOrganization') || '',
       githubRepository: localStorage.getItem('githubRepository') || '',
       githubAccessToken: localStorage.getItem('githubAccessToken') || '',
       areSettingsOpen: true,
     }
   },
   mounted: function() {
-    const areSettingsSaved = this.githubOrganisation && this.githubRepository && this.githubAccessToken
+    const areSettingsSaved = this.githubOrganization && this.githubRepository && this.githubAccessToken
     if (areSettingsSaved) {
       this.areSettingsOpen = false
       this.emitEventWithSettings()
@@ -93,14 +93,14 @@ export default {
   },
   methods: {
     save: function() {
-      localStorage.setItem('githubOrganisation', this.githubOrganisation)
+      localStorage.setItem('githubOrganization', this.githubOrganization)
       localStorage.setItem('githubRepository', this.githubRepository)
       localStorage.setItem('githubAccessToken', this.githubAccessToken)
       this.emitEventWithSettings()
     },
     emitEventWithSettings: function() {
       this.$emit('settings-set', {
-        githubOrganisation: this.githubOrganisation,
+        githubOrganization: this.githubOrganization,
         githubRepository: this.githubRepository,
         githubAccessToken: this.githubAccessToken,
       })
