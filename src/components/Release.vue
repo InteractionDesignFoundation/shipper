@@ -79,12 +79,15 @@ export default {
       type: Object,
       required: true,
     },
+    targetBranch: {
+      type: String,
+      required: true,
+    },
   },
   data() {
     return {
       releaseName: '',
       releaseNotes: '',
-      targetBranch: 'develop',
       createdRelease: undefined,
       previousRelease: undefined,
     }
@@ -100,7 +103,7 @@ export default {
       if (!this.previousRelease) {
         return undefined
       }
-      return `https://github.com/InteractionDesignFoundation/IxDF-web/compare/${this.previousRelease.tagName}...develop`
+      return `https://github.com/InteractionDesignFoundation/IxDF-web/compare/${this.previousRelease.tagName}...${this.targetBranch}`
     },
   },
   created: function() {

@@ -28,6 +28,7 @@
       :octo-rest-repo-client="octoRestRepoClient"
       :octo-graph-client="octoGraphClient"
       :milestone="selectedMilestone"
+      :targetBranch="branchToTag"
       class="step"
       @release-created="onReleaseCreated"
     />
@@ -55,6 +56,7 @@ export default {
   },
   data() {
     return {
+      branchToTag: 'develop',
       octoGraphClient: undefined,
       octoRestRepoClient: undefined,
       // steps
