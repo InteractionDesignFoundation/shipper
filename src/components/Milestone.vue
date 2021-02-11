@@ -53,7 +53,7 @@
     </ul>
     <p v-if="closedIssuesNumber === 0">
       <b>No any closed issues?</b> Probably you have forgotten to close issue(s) on GitHub.
-      If you want to ship a new release without closing any issues – please don't forget to manually specify Release notes (next step).
+      If you want to ship a new release without closing any issues – please don’t forget to manually specify Release notes (next step).
     </p>
     <p v-if="openIssuesNumber !== 0">
       <b>Has open issues?</b> Maybe something wrong, please ping open issue

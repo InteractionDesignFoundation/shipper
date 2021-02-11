@@ -1,6 +1,6 @@
 <template>
   <section class="step">
-    <h2 class="title">🏁 That's it, you are awesome! 🦄</h2>
+    <h2 class="title">🏁 That’s it, you are awesome! 🦄</h2>
 
     <p>
       <strong>Please stay online for the next 1+ hour(s)</strong> to solve
