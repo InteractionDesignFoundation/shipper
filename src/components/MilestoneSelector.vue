@@ -4,6 +4,11 @@
     <label for="milestoneSelector" class="label"
       >Please select a milestone to close</label
     >
+    <p>
+      We attach GitHub issues to Milestones.
+      Closed milestone means issues attached to the milestone are ready
+      to be shipped.
+    </p>
     <div class="select is-primary is-medium">
       <select id="milestoneSelector" v-model="selectedMilestone">
         <option value="" disabled>Please select a milestone</option>
@@ -26,7 +31,7 @@
     </button>
     <div>
       <small
-        >in 98% cases it should be <code>Next Release</code> milestone</small
+        >in 99% cases it should be <code>Next Release</code> milestone</small
       >
     </div>
   </section>
