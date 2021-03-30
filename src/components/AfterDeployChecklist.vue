@@ -22,8 +22,8 @@
       </li>
       <li>
         Check
-        <a href="https://app.codeship.com/projects/79159" target="_blank"
-          >app status on Codeship CI.</a
+        <a href="https://github.com/InteractionDesignFoundation/IxDF-web/actions/workflows/main.yml" target="_blank"
+          >app status on Github Actions.</a
         >
       </li>
       <li>
