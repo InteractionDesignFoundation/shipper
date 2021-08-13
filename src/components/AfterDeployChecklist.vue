@@ -13,8 +13,8 @@
       </li>
       <li>
         In case of important runtime errors, we will be notified on
-        <code>#error--production</code> and
-        <code>#js-errors-production</code> channels.
+        <code>#errors--production</code> and
+        <code>#js-errors--production</code> channels.
       </li>
       <li>
         In case of success, you will receive a notification on
@@ -23,7 +23,7 @@
       <li>
         Check
         <a href="https://github.com/InteractionDesignFoundation/IxDF-web/actions/workflows/main.yml" target="_blank"
-          >app status on Github Actions.</a
+        >CI/CD status.</a
         >
       </li>
       <li>
