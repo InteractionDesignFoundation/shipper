@@ -13,8 +13,8 @@
       </li>
       <li>
         In case of important runtime errors, we will be notified on
-        <code>#error--production</code> and
-        <code>#js-errors-production</code> channels.
+        <code>#errors--production</code> and
+        <code>#js-errors--production</code> channels.
       </li>
       <li>
         In case of success, you will receive a notification on
@@ -22,8 +22,8 @@
       </li>
       <li>
         Check
-        <a href="https://app.codeship.com/projects/79159" target="_blank"
-          >app status on Codeship CI.</a
+        <a href="https://github.com/InteractionDesignFoundation/IxDF-web/actions" target="_blank"
+          >CI/CD status.</a
         >
       </li>
       <li>
