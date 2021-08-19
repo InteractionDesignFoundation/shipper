@@ -19,9 +19,18 @@
     </details>
 
     <p>
-      Please write clean changelogs so non-technical staff can also read and understand it.
-      All technical changes please mark by ⚙️ emoji, so non-developers can easily ignore them.
-      Example: <code> - ⚙️ Update composer dependencies</code>.
+      Please write clean/meaningful changelogs so non-technical staff can also read and understand it. Example: 
+    </p>
+    
+    <ul>
+      <li><code> - ⭐ Associate Bootcamp with Course and BootcampEnrolment with CourseEnrolment</code></li>
+      <li><code> - ✨ Hide search bar from Installments Nova panel</code></li>
+      <li><code> - 🐞 Fix Masterclass record purchase when paid throguh PayPal</code></li>
+    </ul>
+
+    <p>
+      All technical changes please mark by ⚙️ emoji, so non-developers can easily ignore them. Example: <br>
+      <code> - ⚙️ Update composer dependencies</code>
     </p>
 
     <form @submit.prevent="createRelease">
