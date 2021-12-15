@@ -19,9 +19,9 @@
     </details>
 
     <p>
-      Please write clean/meaningful changelogs so non-technical staff can also read and understand it. Example: 
+      Please write clean/meaningful changelogs so non-technical staff can also read and understand it. Example:
     </p>
-    
+
     <ul>
       <li><code> - ⭐ Associate Bootcamp with Course and BootcampEnrolment with CourseEnrolment</code></li>
       <li><code> - ✨ Hide search bar from Installments Nova panel</code></li>
@@ -162,13 +162,14 @@ export default {
         .forEach(issue => {
           changelogItems.add(` - ${this.getChangelogTextForIssue(issue)}\n`)
         })
-      const body = `Release notes:\n${[...changelogItems].join('')}`
-      let footer = `Code Diff: https://github.com/InteractionDesignFoundation/IxDF-web/compare/${this.previousRelease.tagName}...${this.releaseName}`
+      const head = '`## What’s Changed:';
+      const body = `${[...changelogItems].join('')}`
+      let footer = `**Full Changelog**: https://github.com/InteractionDesignFoundation/IxDF-web/compare/${this.previousRelease.tagName}...${this.releaseName}`
       if (milestone.issues.nodes.length > 0) {
         footer += `\nClosed issues: ${milestone.url}?closed=1`
       }
 
-      return `${body}\n${footer}`
+      return `${head}\n${body}\n${footer}`
     },
     getChangelogTextForIssue: function(issue) {
       const prefixes = issue.labels.nodes.map(label => {
