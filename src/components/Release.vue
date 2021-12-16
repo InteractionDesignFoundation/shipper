@@ -162,7 +162,7 @@ export default {
         .forEach(issue => {
           changelogItems.add(` - ${this.getChangelogTextForIssue(issue)}\n`)
         })
-      const head = '`## What’s Changed:';
+      const head = '## What’s Changed:';
       const body = `${[...changelogItems].join('')}`
       let footer = `**Full Changelog**: https://github.com/InteractionDesignFoundation/IxDF-web/compare/${this.previousRelease.tagName}...${this.releaseName}`
       if (milestone.issues.nodes.length > 0) {
