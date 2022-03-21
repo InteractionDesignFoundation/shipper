@@ -51,14 +51,11 @@
               maxlength="40"
             />
           </div>
-          <small
-            >Need help?
-            <a
-              href="https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/"
-              target="_blank"
-              >Create a GitHub personal access token</a
-            >, (<code>repo</code> permission is enough to create a Release and
+          <small>Need help? <a
+            href="https://github.com/settings/tokens/new"
+            target="_blank">Create a GitHub personal access token</a>, (<code>repo</code> permission is enough to create a Release and
             fetch Releases, Issues and Milestones info).
+            <a href="https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/" target="_blank">Details</a>
           </small>
         </div>
 
