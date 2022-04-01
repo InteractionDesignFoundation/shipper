@@ -9,6 +9,6 @@ updates:
     labels:
       - "dependencies"
     reviewers:
-      - hasan-wajahat
+      - frontend-devs
     assignees:
       - ixdf-bot
