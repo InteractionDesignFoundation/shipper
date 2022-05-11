@@ -164,7 +164,7 @@
 </template>
 
 <script>
-import compareVersions from 'compare-versions';
+import compareVersions from 'compare-versions'
 
 export default {
   name: 'Milestone',
@@ -190,32 +190,32 @@ export default {
       createdMilestone: undefined,
       milestoneTitles: [],
       currentReleaseNumber: ''
-    };
+    }
   },
   computed: {
     closedIssuesNumber: function() {
       return this.milestone.issues.nodes.filter(
         issue => issue.state === 'CLOSED'
-      ).length;
+      ).length
     },
     openIssuesNumber: function() {
       return this.milestone.issues.nodes.filter(issue => issue.state === 'OPEN')
-        .length;
+        .length
     }
   },
   created: function() {
     this.getCurrentReleaseNumber()
       .then(currentReleaseNumber => {
-        this.currentReleaseNumber = currentReleaseNumber;
+        this.currentReleaseNumber = currentReleaseNumber
         return this.getSuggestedMilestoneTitles(
           currentReleaseNumber,
           'Release '
-        );
+        )
       })
       .then(
         suggestedMilestoneTitles =>
           (this.milestoneTitles = suggestedMilestoneTitles)
-      );
+      )
   },
   methods: {
     renameAndCloseCurrentMilestone: function() {
@@ -227,10 +227,10 @@ export default {
         })
         .patch()
         .json(json => {
-          this.milestone.title = this.thisMilestoneTitle;
-          this.milestone.state = json.state;
-          return this.milestone;
-        });
+          this.milestone.title = this.thisMilestoneTitle
+          this.milestone.state = json.state
+          return this.milestone
+        })
     },
     createNewMilestone: function() {
       return this.octoRestRepoClient
@@ -241,26 +241,26 @@ export default {
         })
         .post()
         .json(json => {
-          this.createdMilestone = json;
-          this.$emit('new-milestone-created', this.createdMilestone);
-          return this.createdMilestone;
+          this.createdMilestone = json
+          this.$emit('new-milestone-created', this.createdMilestone)
+          return this.createdMilestone
         })
         .catch(error => {
           const validationErrors =
-            error.json && error.json.errors ? error.json.errors : [];
+            error.json && error.json.errors ? error.json.errors : []
           const errorsAsText = validationErrors.reduce((str, currentError) => {
             return (
               str +
               `\n${currentError.resource}.${currentError.field} ${currentError.code}`
-            );
-          }, '');
+            )
+          }, '')
           alert(
             `Error ${error.response.statusText}: ${error.json.message} ${errorsAsText}`
-          );
-        });
+          )
+        })
     },
     skipCreatingNewMilestone: function() {
-      this.$emit('new-milestone-creating-skipped');
+      this.$emit('new-milestone-creating-skipped')
     },
     getCurrentReleaseNumber: function() {
       const query = `
@@ -272,7 +272,7 @@ export default {
                        }
                    }
                  }
-                   }`;
+                   }`
       return this.octoGraphClient
         .json({query: query})
         .post()
@@ -286,33 +286,33 @@ export default {
         .then(latestReleaseMilestoneTitles => {
           return latestReleaseMilestoneTitles[
             latestReleaseMilestoneTitles.length - 1
-          ];
-        });
+          ]
+        })
     },
     getSuggestedMilestoneTitles: function(currentReleaseNumber, prefix = '') {
-      const milestoneTitles = [];
+      const milestoneTitles = []
       if (!currentReleaseNumber) {
-        return [`${prefix}0.1`, `${prefix}1.0`];
+        return [`${prefix}0.1`, `${prefix}1.0`]
       }
 
-      const parts = currentReleaseNumber.replace(prefix, '').split('.');
-      const currentMajorNumber = parseInt(parts[0]) || 0;
-      const currentMinorNumber = parseInt(parts[1]) || 0;
-      const currentPatchNumber = parseInt(parts[2]) || 0;
+      const parts = currentReleaseNumber.replace(prefix, '').split('.')
+      const currentMajorNumber = parseInt(parts[0]) || 0
+      const currentMinorNumber = parseInt(parts[1]) || 0
+      const currentPatchNumber = parseInt(parts[2]) || 0
 
       milestoneTitles.push(
         `${prefix}${currentMajorNumber}.${currentMinorNumber}.${currentPatchNumber +
           1}`
-      );
+      )
       milestoneTitles.push(
         `${prefix}${currentMajorNumber}.${currentMinorNumber + 1}.0`
-      );
-      milestoneTitles.push(`${prefix}${currentMajorNumber + 1}.0.0`);
+      )
+      milestoneTitles.push(`${prefix}${currentMajorNumber + 1}.0.0`)
 
-      return milestoneTitles;
+      return milestoneTitles
     }
   }
-};
+}
 </script>
 
 <style scoped>

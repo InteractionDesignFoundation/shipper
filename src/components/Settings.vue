@@ -94,32 +94,30 @@ export default {
       githubRepository: localStorage.getItem('githubRepository') || '',
       githubAccessToken: localStorage.getItem('githubAccessToken') || '',
       areSettingsOpen: true
-    };
+    }
   },
   mounted: function() {
     const areSettingsSaved =
-      this.githubOrganization &&
-      this.githubRepository &&
-      this.githubAccessToken;
+      this.githubOrganization && this.githubRepository && this.githubAccessToken
     if (areSettingsSaved) {
-      this.areSettingsOpen = false;
-      this.emitEventWithSettings();
+      this.areSettingsOpen = false
+      this.emitEventWithSettings()
     }
   },
   methods: {
     save: function() {
-      localStorage.setItem('githubOrganization', this.githubOrganization);
-      localStorage.setItem('githubRepository', this.githubRepository);
-      localStorage.setItem('githubAccessToken', this.githubAccessToken);
-      this.emitEventWithSettings();
+      localStorage.setItem('githubOrganization', this.githubOrganization)
+      localStorage.setItem('githubRepository', this.githubRepository)
+      localStorage.setItem('githubAccessToken', this.githubAccessToken)
+      this.emitEventWithSettings()
     },
     emitEventWithSettings: function() {
       this.$emit('settings-set', {
         githubOrganization: this.githubOrganization,
         githubRepository: this.githubRepository,
         githubAccessToken: this.githubAccessToken
-      });
+      })
     }
   }
-};
+}
 </script>

@@ -51,15 +51,15 @@ export default {
     return {
       milestones: [],
       selectedMilestone: undefined
-    };
+    }
   },
   watch: {
     selectedMilestone: function(newMilestone) {
-      this.$emit('milestone-changed', newMilestone);
+      this.$emit('milestone-changed', newMilestone)
     }
   },
   created: function() {
-    this.loadMilestones();
+    this.loadMilestones()
   },
   methods: {
     fetchMilestones: function() {
@@ -90,19 +90,19 @@ export default {
                        }
                    }
                  }
-                   }`;
+                   }`
       return this.octoGraphClient
         .json({query: query})
         .post()
-        .json(json => json.data.repository.milestones.nodes);
+        .json(json => json.data.repository.milestones.nodes)
     },
     loadMilestones: function() {
       this.fetchMilestones().then(milestones => {
-        this.milestones = milestones;
-        this.$emit('milestones-loaded');
-        return milestones;
-      });
+        this.milestones = milestones
+        this.$emit('milestones-loaded')
+        return milestones
+      })
     }
   }
-};
+}
 </script>

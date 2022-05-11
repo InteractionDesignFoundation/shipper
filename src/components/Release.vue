@@ -82,7 +82,7 @@
 </template>
 
 <script>
-import emojiRegex from 'emoji-regex';
+import emojiRegex from 'emoji-regex'
 
 export default {
   name: 'Release',
@@ -110,30 +110,30 @@ export default {
       releaseNotes: '',
       createdRelease: undefined,
       previousRelease: undefined
-    };
+    }
   },
   watch: {
     milestone: function(selectedMilestone) {
-      this.releaseName = this.generateReleaseName(selectedMilestone);
-      this.releaseNotes = this.generateReleaseNotes(selectedMilestone);
+      this.releaseName = this.generateReleaseName(selectedMilestone)
+      this.releaseNotes = this.generateReleaseNotes(selectedMilestone)
     }
   },
   computed: {
     codeDiffUrl: function() {
       if (!this.previousRelease) {
-        return undefined;
+        return undefined
       }
-      return `https://github.com/InteractionDesignFoundation/IxDF-web/compare/${this.previousRelease.tagName}...${this.targetBranch}`;
+      return `https://github.com/InteractionDesignFoundation/IxDF-web/compare/${this.previousRelease.tagName}...${this.targetBranch}`
     }
   },
   created: function() {
     this.fetchLastReleases().then(releases => {
       this.previousRelease = releases.find(
         release => release.isDraft === false && release.isPrerelease === false
-      );
-      this.releaseName = this.generateReleaseName(this.milestone);
-      this.releaseNotes = this.generateReleaseNotes(this.milestone);
-    });
+      )
+      this.releaseName = this.generateReleaseName(this.milestone)
+      this.releaseNotes = this.generateReleaseNotes(this.milestone)
+    })
   },
   methods: {
     fetchLastReleases: function() {
@@ -153,48 +153,48 @@ export default {
                       }
                     }
                   }
-                }`;
+                }`
       return this.octoGraphClient
         .json({query: query})
         .post()
-        .json(json => json.data.repository.releases.nodes);
+        .json(json => json.data.repository.releases.nodes)
     },
     generateReleaseName: function(milestone) {
-      const semverNumbers = milestone.title.match(/[0-9.]+/);
-      return semverNumbers ? semverNumbers[0] : '?';
+      const semverNumbers = milestone.title.match(/[0-9.]+/)
+      return semverNumbers ? semverNumbers[0] : '?'
     },
     generateReleaseNotes: function(milestone) {
-      const changelogItems = new Set();
+      const changelogItems = new Set()
       milestone.issues.nodes
         .filter(issue => {
-          const labelNames = issue.labels.nodes.map(label => label.name);
-          return !labelNames.includes('hide from release notes');
+          const labelNames = issue.labels.nodes.map(label => label.name)
+          return !labelNames.includes('hide from release notes')
         })
         .forEach(issue => {
-          changelogItems.add(` - ${this.getChangelogTextForIssue(issue)}\n`);
-        });
-      const head = 'What’s Changed:';
-      const body = `${[...changelogItems].join('')}`;
-      let footer = `Full Changelog: https://github.com/InteractionDesignFoundation/IxDF-web/compare/${this.previousRelease.tagName}...${this.releaseName}`;
+          changelogItems.add(` - ${this.getChangelogTextForIssue(issue)}\n`)
+        })
+      const head = 'What’s Changed:'
+      const body = `${[...changelogItems].join('')}`
+      let footer = `Full Changelog: https://github.com/InteractionDesignFoundation/IxDF-web/compare/${this.previousRelease.tagName}...${this.releaseName}`
       if (milestone.issues.nodes.length > 0) {
-        footer += `\nClosed issues: ${milestone.url}?closed=1`;
+        footer += `\nClosed issues: ${milestone.url}?closed=1`
       }
 
-      return `${head}\n${body}\n${footer}`;
+      return `${head}\n${body}\n${footer}`
     },
     getChangelogTextForIssue: function(issue) {
       const prefixes = issue.labels.nodes.map(label => {
-        const regex = emojiRegex();
-        let match;
-        const emojies = [];
+        const regex = emojiRegex()
+        let match
+        const emojies = []
         // eslint-disable-next-line no-cond-assign
         while ((match = regex.exec(label.name))) {
-          emojies.push(match[0]);
+          emojies.push(match[0])
         }
-        return emojies.join('');
-      });
+        return emojies.join('')
+      })
 
-      return `${prefixes.join('')} ${issue.title}`;
+      return `${prefixes.join('')} ${issue.title}`
     },
     createRelease: function() {
       /** @see https://developer.github.com/v3/repos/releases/#create-a-release */
@@ -209,12 +209,12 @@ export default {
         })
         .post()
         .json(createdRelease => {
-          this.$emit('release-created', createdRelease);
-          return (this.createdRelease = createdRelease);
-        });
+          this.$emit('release-created', createdRelease)
+          return (this.createdRelease = createdRelease)
+        })
     }
   }
-};
+}
 </script>
 
 <style scoped>
