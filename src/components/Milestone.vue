@@ -11,7 +11,7 @@
           <span
             :class="{
               'is-success': closedIssuesNumber > 0,
-              'is-danger': closedIssuesNumber < 1,
+              'is-danger': closedIssuesNumber < 1
             }"
             class="tag "
             >{{ closedIssuesNumber }}</span
@@ -24,7 +24,7 @@
           <span
             :class="{
               'is-success': openIssuesNumber === 0,
-              'is-danger': openIssuesNumber !== 0,
+              'is-danger': openIssuesNumber !== 0
             }"
             class="tag "
             >{{ openIssuesNumber }}</span
@@ -52,19 +52,24 @@
       </li>
     </ul>
     <p v-if="closedIssuesNumber === 0">
-      <b>No any closed issues?</b> Probably you have forgotten to close issue(s) on GitHub.
-      If you want to ship a new release without closing any issues – please don’t forget to manually specify Release notes (next step).
+      <b>No closed issues?</b> You might have forgotten to close issue(s) on
+      GitHub. If you want to ship a new release without closing any issues –
+      please don’t forget to manually specify release notes (next step).
     </p>
     <p v-if="openIssuesNumber !== 0">
-      <b>Has open issues?</b> Maybe something wrong, please ping open issue
-      assignee(s) to update a state of open issue(s) attached to this milestone.
+      <b>Are there some open issues?</b> Something might be wrong, please ping
+      open issue assignee(s) to update the state of open issue(s) attached to
+      this milestone.
     </p>
 
     <hr />
 
     <p>
       <b>Current release number</b>:
-      <a href="https://github.com/InteractionDesignFoundation/IxDF-web/releases">{{ currentReleaseNumber }}</a>
+      <a
+        href="https://github.com/InteractionDesignFoundation/IxDF-web/releases"
+        >{{ currentReleaseNumber }}</a
+      >
     </p>
 
     <div>
@@ -74,8 +79,8 @@
             ⚠️ There are some open issues in the selected milestone.
           </p>
           <p>
-            Please close or remove them from the milestone to be able to close
-            the milestone.
+            Please close or remove them from the milestone so that the milestone
+            can be closed.
           </p>
         </div>
 
@@ -139,7 +144,12 @@
               <button class="button is-success" type="submit">
                 Create a new milestone
               </button>
-              <button @click="skipCreatingNewMilestone" class="button is-small" type="button" title="Do not create a new milestone">
+              <button
+                @click="skipCreatingNewMilestone"
+                class="button is-small"
+                type="button"
+                title="Do not create a new milestone"
+              >
                 Skip
               </button>
               <small class="hint"
@@ -154,99 +164,103 @@
 </template>
 
 <script>
-import compareVersions from 'compare-versions'
+import compareVersions from "compare-versions";
 
 export default {
-  name: 'Milestone',
+  name: "Milestone",
   props: {
     milestone: {
       type: Object,
-      required: true,
+      required: true
     },
     octoGraphClient: {
       type: Object,
-      required: true,
+      required: true
     },
     octoRestRepoClient: {
       type: Object,
-      required: true,
-    },
+      required: true
+    }
   },
   data() {
     return {
-      thisMilestoneTitle: '',
+      thisMilestoneTitle: "",
       previousMilestoneOriginalTitle: this.milestone.title,
       nextMilestoneTitle: this.milestone.title,
       createdMilestone: undefined,
       milestoneTitles: [],
-      currentReleaseNumber: '',
-    }
+      currentReleaseNumber: ""
+    };
   },
   computed: {
     closedIssuesNumber: function() {
       return this.milestone.issues.nodes.filter(
-        issue => issue.state === 'CLOSED'
-      ).length
+        issue => issue.state === "CLOSED"
+      ).length;
     },
     openIssuesNumber: function() {
-      return this.milestone.issues.nodes.filter(issue => issue.state === 'OPEN')
-        .length
-    },
+      return this.milestone.issues.nodes.filter(issue => issue.state === "OPEN")
+        .length;
+    }
   },
   created: function() {
     this.getCurrentReleaseNumber()
       .then(currentReleaseNumber => {
         this.currentReleaseNumber = currentReleaseNumber;
-        return this.getSuggestedMilestoneTitles(currentReleaseNumber, 'Release ');
-      }).then(
+        return this.getSuggestedMilestoneTitles(
+          currentReleaseNumber,
+          "Release "
+        );
+      })
+      .then(
         suggestedMilestoneTitles =>
           (this.milestoneTitles = suggestedMilestoneTitles)
-      )
+      );
   },
   methods: {
     renameAndCloseCurrentMilestone: function() {
       return this.octoRestRepoClient
         .url(`/milestones/${this.milestone.number}`)
         .json({
-          state: 'closed',
-          title: this.thisMilestoneTitle,
+          state: "closed",
+          title: this.thisMilestoneTitle
         })
         .patch()
         .json(json => {
-          this.milestone.title = this.thisMilestoneTitle
-          this.milestone.state = json.state
-          return this.milestone
-        })
+          this.milestone.title = this.thisMilestoneTitle;
+          this.milestone.state = json.state;
+          return this.milestone;
+        });
     },
     createNewMilestone: function() {
       return this.octoRestRepoClient
-        .url('/milestones')
+        .url("/milestones")
         .json({
           title: `${this.nextMilestoneTitle}`,
-          state: 'open',
+          state: "open"
         })
         .post()
         .json(json => {
-          this.createdMilestone = json
-          this.$emit('new-milestone-created', this.createdMilestone)
-          return this.createdMilestone
+          this.createdMilestone = json;
+          this.$emit("new-milestone-created", this.createdMilestone);
+          return this.createdMilestone;
         })
         .catch(error => {
           const validationErrors =
-            error.json && error.json.errors ? error.json.errors : []
+            error.json && error.json.errors ? error.json.errors : [];
           const errorsAsText = validationErrors.reduce((str, currentError) => {
             return (
               str +
               `\n${currentError.resource}.${currentError.field} ${currentError.code}`
-            )
-          }, '')
+            );
+          }, "");
           alert(
             `Error ${error.response.statusText}: ${error.json.message} ${errorsAsText}`
-          )
-        })
+          );
+        });
     },
     skipCreatingNewMilestone: function() {
-      this.$emit('new-milestone-creating-skipped')
+      this.$emit("new-milestone-creating-skipped");
     },
     getCurrentReleaseNumber: function() {
       const query = `
@@ -258,47 +272,47 @@ export default {
                        }
                    }
                  }
-                   }`
+                   }`;
       return this.octoGraphClient
         .json({ query: query })
         .post()
         .json(json =>
           json.data.repository.milestones.nodes
             .map(milestone => milestone.title)
-            .filter(milestoneTitle => milestoneTitle.startsWith('Release'))
-            .map(milestoneTitle => milestoneTitle.replace('Release ', ''))
+            .filter(milestoneTitle => milestoneTitle.startsWith("Release"))
+            .map(milestoneTitle => milestoneTitle.replace("Release ", ""))
             .sort(compareVersions)
         )
         .then(latestReleaseMilestoneTitles => {
           return latestReleaseMilestoneTitles[
             latestReleaseMilestoneTitles.length - 1
-          ]
-        })
+          ];
+        });
     },
-    getSuggestedMilestoneTitles: function(currentReleaseNumber, prefix = '') {
-      const milestoneTitles = []
+    getSuggestedMilestoneTitles: function(currentReleaseNumber, prefix = "") {
+      const milestoneTitles = [];
       if (!currentReleaseNumber) {
-        return [`${prefix}0.1`, `${prefix}1.0`]
+        return [`${prefix}0.1`, `${prefix}1.0`];
       }
 
-      const parts = currentReleaseNumber.replace(prefix, '').split('.')
-      const currentMajorNumber = parseInt(parts[0]) || 0
-      const currentMinorNumber = parseInt(parts[1]) || 0
-      const currentPatchNumber = parseInt(parts[2]) || 0
+      const parts = currentReleaseNumber.replace(prefix, "").split(".");
+      const currentMajorNumber = parseInt(parts[0]) || 0;
+      const currentMinorNumber = parseInt(parts[1]) || 0;
+      const currentPatchNumber = parseInt(parts[2]) || 0;
 
       milestoneTitles.push(
         `${prefix}${currentMajorNumber}.${currentMinorNumber}.${currentPatchNumber +
           1}`
-      )
+      );
       milestoneTitles.push(
         `${prefix}${currentMajorNumber}.${currentMinorNumber + 1}.0`
-      )
-      milestoneTitles.push(`${prefix}${currentMajorNumber + 1}.0.0`)
+      );
+      milestoneTitles.push(`${prefix}${currentMajorNumber + 1}.0.0`);
 
-      return milestoneTitles
-    },
-  },
-}
+      return milestoneTitles;
+    }
+  }
+};
 </script>
 
 <style scoped>

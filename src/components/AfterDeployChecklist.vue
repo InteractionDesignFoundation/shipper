@@ -9,21 +9,23 @@
 
     <ol class="list">
       <li>
-        In case of CI build errors, we will be notified on your email.
+        In case of CI build errors, we will be notified via email.
       </li>
       <li>
         In case of important runtime errors, we will be notified on
         <code>#errors--production</code> and
-        <code>#js-errors--production</code> channels.
+        <code>#js-errors--production</code> Slack channels.
       </li>
       <li>
-        In case of success, you will receive a notification on
+        If the release was successful, you will receive a notification on
         <code>#releases</code> channel.
       </li>
       <li>
         Check
-        <a href="https://github.com/InteractionDesignFoundation/IxDF-web/actions/workflows/main.yml" target="_blank"
-        >CI/CD status.</a
+        <a
+          href="https://github.com/InteractionDesignFoundation/IxDF-web/actions/workflows/main.yml"
+          target="_blank"
+          >CI/CD status.</a
         >
       </li>
       <li>

@@ -3,9 +3,8 @@
     <h2 class="title">Select a milestone to close</h2>
 
     <p>
-      We attach GitHub issues to Milestones.
-      Closed milestone means issues attached to the milestone are ready
-      to be shipped.
+      We attach GitHub issues to Milestones. A closed milestone means that the
+      issues attached to the milestone are ready to be shipped.
     </p>
 
     <label for="milestoneSelector" class="label"
@@ -33,7 +32,7 @@
     </button>
     <div>
       <small
-        >in 99% cases it should be <code>Next Release</code> milestone</small
+        >The milestone will be <code>Next Release</code> 99% of the time</small
       >
     </div>
   </section>
@@ -41,26 +40,26 @@
 
 <script>
 export default {
-  name: 'MilestoneSelector',
+  name: "MilestoneSelector",
   props: {
     octoGraphClient: {
       type: Object,
-      required: true,
-    },
+      required: true
+    }
   },
   data() {
     return {
       milestones: [],
-      selectedMilestone: undefined,
-    }
+      selectedMilestone: undefined
+    };
   },
   watch: {
     selectedMilestone: function(newMilestone) {
-      this.$emit('milestone-changed', newMilestone)
-    },
+      this.$emit("milestone-changed", newMilestone);
+    }
   },
   created: function() {
-    this.loadMilestones()
+    this.loadMilestones();
   },
   methods: {
     fetchMilestones: function() {
@@ -91,19 +90,19 @@ export default {
                        }
                    }
                  }
-                   }`
+                   }`;
       return this.octoGraphClient
         .json({ query: query })
         .post()
-        .json(json => json.data.repository.milestones.nodes)
+        .json(json => json.data.repository.milestones.nodes);
     },
     loadMilestones: function() {
       this.fetchMilestones().then(milestones => {
-        this.milestones = milestones
-        this.$emit('milestones-loaded')
-        return milestones
-      })
-    },
-  },
-}
+        this.milestones = milestones;
+        this.$emit("milestones-loaded");
+        return milestones;
+      });
+    }
+  }
+};
 </script>
