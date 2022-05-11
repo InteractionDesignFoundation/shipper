@@ -82,10 +82,10 @@
 </template>
 
 <script>
-import emojiRegex from "emoji-regex";
+import emojiRegex from 'emoji-regex';
 
 export default {
-  name: "Release",
+  name: 'Release',
   props: {
     milestone: {
       type: Object,
@@ -106,8 +106,8 @@ export default {
   },
   data() {
     return {
-      releaseName: "",
-      releaseNotes: "",
+      releaseName: '',
+      releaseNotes: '',
       createdRelease: undefined,
       previousRelease: undefined
     };
@@ -155,26 +155,26 @@ export default {
                   }
                 }`;
       return this.octoGraphClient
-        .json({ query: query })
+        .json({query: query})
         .post()
         .json(json => json.data.repository.releases.nodes);
     },
     generateReleaseName: function(milestone) {
       const semverNumbers = milestone.title.match(/[0-9.]+/);
-      return semverNumbers ? semverNumbers[0] : "?";
+      return semverNumbers ? semverNumbers[0] : '?';
     },
     generateReleaseNotes: function(milestone) {
       const changelogItems = new Set();
       milestone.issues.nodes
         .filter(issue => {
           const labelNames = issue.labels.nodes.map(label => label.name);
-          return !labelNames.includes("hide from release notes");
+          return !labelNames.includes('hide from release notes');
         })
         .forEach(issue => {
           changelogItems.add(` - ${this.getChangelogTextForIssue(issue)}\n`);
         });
-      const head = "What’s Changed:";
-      const body = `${[...changelogItems].join("")}`;
+      const head = 'What’s Changed:';
+      const body = `${[...changelogItems].join('')}`;
       let footer = `Full Changelog: https://github.com/InteractionDesignFoundation/IxDF-web/compare/${this.previousRelease.tagName}...${this.releaseName}`;
       if (milestone.issues.nodes.length > 0) {
         footer += `\nClosed issues: ${milestone.url}?closed=1`;
@@ -191,10 +191,10 @@ export default {
         while ((match = regex.exec(label.name))) {
           emojies.push(match[0]);
         }
-        return emojies.join("");
+        return emojies.join('');
       });
 
-      return `${prefixes.join("")} ${issue.title}`;
+      return `${prefixes.join('')} ${issue.title}`;
     },
     createRelease: function() {
       /** @see https://developer.github.com/v3/repos/releases/#create-a-release */
@@ -209,7 +209,7 @@ export default {
         })
         .post()
         .json(createdRelease => {
-          this.$emit("release-created", createdRelease);
+          this.$emit('release-created', createdRelease);
           return (this.createdRelease = createdRelease);
         });
     }

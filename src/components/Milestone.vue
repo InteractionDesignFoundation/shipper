@@ -45,7 +45,7 @@
         <span
           v-for="label in issue.labels.nodes"
           :key="label.name"
-          :style="{ backgroundColor: '#' + label.color }"
+          :style="{backgroundColor: '#' + label.color}"
           class="gh-label"
           >{{ label.name }}</span
         >
@@ -164,10 +164,10 @@
 </template>
 
 <script>
-import compareVersions from "compare-versions";
+import compareVersions from 'compare-versions';
 
 export default {
-  name: "Milestone",
+  name: 'Milestone',
   props: {
     milestone: {
       type: Object,
@@ -184,22 +184,22 @@ export default {
   },
   data() {
     return {
-      thisMilestoneTitle: "",
+      thisMilestoneTitle: '',
       previousMilestoneOriginalTitle: this.milestone.title,
       nextMilestoneTitle: this.milestone.title,
       createdMilestone: undefined,
       milestoneTitles: [],
-      currentReleaseNumber: ""
+      currentReleaseNumber: ''
     };
   },
   computed: {
     closedIssuesNumber: function() {
       return this.milestone.issues.nodes.filter(
-        issue => issue.state === "CLOSED"
+        issue => issue.state === 'CLOSED'
       ).length;
     },
     openIssuesNumber: function() {
-      return this.milestone.issues.nodes.filter(issue => issue.state === "OPEN")
+      return this.milestone.issues.nodes.filter(issue => issue.state === 'OPEN')
         .length;
     }
   },
@@ -209,7 +209,7 @@ export default {
         this.currentReleaseNumber = currentReleaseNumber;
         return this.getSuggestedMilestoneTitles(
           currentReleaseNumber,
-          "Release "
+          'Release '
         );
       })
       .then(
@@ -222,7 +222,7 @@ export default {
       return this.octoRestRepoClient
         .url(`/milestones/${this.milestone.number}`)
         .json({
-          state: "closed",
+          state: 'closed',
           title: this.thisMilestoneTitle
         })
         .patch()
@@ -234,15 +234,15 @@ export default {
     },
     createNewMilestone: function() {
       return this.octoRestRepoClient
-        .url("/milestones")
+        .url('/milestones')
         .json({
           title: `${this.nextMilestoneTitle}`,
-          state: "open"
+          state: 'open'
         })
         .post()
         .json(json => {
           this.createdMilestone = json;
-          this.$emit("new-milestone-created", this.createdMilestone);
+          this.$emit('new-milestone-created', this.createdMilestone);
           return this.createdMilestone;
         })
         .catch(error => {
@@ -253,14 +253,14 @@ export default {
               str +
               `\n${currentError.resource}.${currentError.field} ${currentError.code}`
             );
-          }, "");
+          }, '');
           alert(
             `Error ${error.response.statusText}: ${error.json.message} ${errorsAsText}`
           );
         });
     },
     skipCreatingNewMilestone: function() {
-      this.$emit("new-milestone-creating-skipped");
+      this.$emit('new-milestone-creating-skipped');
     },
     getCurrentReleaseNumber: function() {
       const query = `
@@ -274,13 +274,13 @@ export default {
                  }
                    }`;
       return this.octoGraphClient
-        .json({ query: query })
+        .json({query: query})
         .post()
         .json(json =>
           json.data.repository.milestones.nodes
             .map(milestone => milestone.title)
-            .filter(milestoneTitle => milestoneTitle.startsWith("Release"))
-            .map(milestoneTitle => milestoneTitle.replace("Release ", ""))
+            .filter(milestoneTitle => milestoneTitle.startsWith('Release'))
+            .map(milestoneTitle => milestoneTitle.replace('Release ', ''))
             .sort(compareVersions)
         )
         .then(latestReleaseMilestoneTitles => {
@@ -289,13 +289,13 @@ export default {
           ];
         });
     },
-    getSuggestedMilestoneTitles: function(currentReleaseNumber, prefix = "") {
+    getSuggestedMilestoneTitles: function(currentReleaseNumber, prefix = '') {
       const milestoneTitles = [];
       if (!currentReleaseNumber) {
         return [`${prefix}0.1`, `${prefix}1.0`];
       }
 
-      const parts = currentReleaseNumber.replace(prefix, "").split(".");
+      const parts = currentReleaseNumber.replace(prefix, '').split('.');
       const currentMajorNumber = parseInt(parts[0]) || 0;
       const currentMinorNumber = parseInt(parts[1]) || 0;
       const currentPatchNumber = parseInt(parts[2]) || 0;

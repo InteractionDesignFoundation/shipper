@@ -40,7 +40,7 @@
 
 <script>
 export default {
-  name: "MilestoneSelector",
+  name: 'MilestoneSelector',
   props: {
     octoGraphClient: {
       type: Object,
@@ -55,7 +55,7 @@ export default {
   },
   watch: {
     selectedMilestone: function(newMilestone) {
-      this.$emit("milestone-changed", newMilestone);
+      this.$emit('milestone-changed', newMilestone);
     }
   },
   created: function() {
@@ -92,14 +92,14 @@ export default {
                  }
                    }`;
       return this.octoGraphClient
-        .json({ query: query })
+        .json({query: query})
         .post()
         .json(json => json.data.repository.milestones.nodes);
     },
     loadMilestones: function() {
       this.fetchMilestones().then(milestones => {
         this.milestones = milestones;
-        this.$emit("milestones-loaded");
+        this.$emit('milestones-loaded');
         return milestones;
       });
     }

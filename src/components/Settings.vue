@@ -86,13 +86,13 @@
 
 <script>
 export default {
-  name: "Settings",
+  name: 'Settings',
   props: {},
   data() {
     return {
-      githubOrganization: localStorage.getItem("githubOrganization") || "",
-      githubRepository: localStorage.getItem("githubRepository") || "",
-      githubAccessToken: localStorage.getItem("githubAccessToken") || "",
+      githubOrganization: localStorage.getItem('githubOrganization') || '',
+      githubRepository: localStorage.getItem('githubRepository') || '',
+      githubAccessToken: localStorage.getItem('githubAccessToken') || '',
       areSettingsOpen: true
     };
   },
@@ -108,13 +108,13 @@ export default {
   },
   methods: {
     save: function() {
-      localStorage.setItem("githubOrganization", this.githubOrganization);
-      localStorage.setItem("githubRepository", this.githubRepository);
-      localStorage.setItem("githubAccessToken", this.githubAccessToken);
+      localStorage.setItem('githubOrganization', this.githubOrganization);
+      localStorage.setItem('githubRepository', this.githubRepository);
+      localStorage.setItem('githubAccessToken', this.githubAccessToken);
       this.emitEventWithSettings();
     },
     emitEventWithSettings: function() {
-      this.$emit("settings-set", {
+      this.$emit('settings-set', {
         githubOrganization: this.githubOrganization,
         githubRepository: this.githubRepository,
         githubAccessToken: this.githubAccessToken
