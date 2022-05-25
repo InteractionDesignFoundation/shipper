@@ -5,7 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --modern",
-    "format": "yarn run eslint --fix --ext .js,.vue src/**",
+    "format": "yarn run eslint --fix --ext .js,.vue src/** tests/**",
     "lint": "vue-cli-service lint",
     "test": "yarn test:unit",
     "test:unit": "vue-cli-service test:unit"
