@@ -71,13 +71,15 @@ export default {
         .url('https://api.github.com/graphql')
         .errorType('json')
         .auth(`Bearer ${settings.githubAccessToken}`)
-        .options({ mode: 'cors' })
+        .options({mode: 'cors'})
 
       this.octoRestRepoClient = wretch()
-        .url('https://api.github.com/repos/InteractionDesignFoundation/IxDF-web')
+        .url(
+          'https://api.github.com/repos/InteractionDesignFoundation/IxDF-web'
+        )
         .errorType('json')
         .auth(`Bearer ${settings.githubAccessToken}`)
-        .options({ mode: 'cors' })
+        .options({mode: 'cors'})
     },
     onMilestoneChanged: function(selectedMilestone) {
       this.selectedMilestone = selectedMilestone

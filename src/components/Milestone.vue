@@ -45,26 +45,31 @@
         <span
           v-for="label in issue.labels.nodes"
           :key="label.name"
-          :style="{ backgroundColor: '#' + label.color }"
+          :style="{backgroundColor: '#' + label.color}"
           class="gh-label"
           >{{ label.name }}</span
         >
       </li>
     </ul>
     <p v-if="closedIssuesNumber === 0">
-      <b>No any closed issues?</b> Probably you have forgotten to close issue(s) on GitHub.
-      If you want to ship a new release without closing any issues – please don’t forget to manually specify Release notes (next step).
+      <b>No closed issues?</b> You might have forgotten to close issue(s) on
+      GitHub. If you want to ship a new release without closing any issues –
+      please don’t forget to manually specify release notes (next step).
     </p>
     <p v-if="openIssuesNumber !== 0">
-      <b>Has open issues?</b> Maybe something wrong, please ping open issue
-      assignee(s) to update a state of open issue(s) attached to this milestone.
+      <b>Are there some open issues?</b> Something might be wrong, please ping
+      open issue assignee(s) to update the state of open issue(s) attached to
+      this milestone.
     </p>
 
     <hr />
 
     <p>
       <b>Current release number</b>:
-      <a href="https://github.com/InteractionDesignFoundation/IxDF-web/releases">{{ currentReleaseNumber }}</a>
+      <a
+        href="https://github.com/InteractionDesignFoundation/IxDF-web/releases"
+        >{{ currentReleaseNumber }}</a
+      >
     </p>
 
     <div>
@@ -74,8 +79,8 @@
             ⚠️ There are some open issues in the selected milestone.
           </p>
           <p>
-            Please close or remove them from the milestone to be able to close
-            the milestone.
+            Please close or remove them from the milestone so that the milestone
+            can be closed.
           </p>
         </div>
 
@@ -139,7 +144,12 @@
               <button class="button is-success" type="submit">
                 Create a new milestone
               </button>
-              <button @click="skipCreatingNewMilestone" class="button is-small" type="button" title="Do not create a new milestone">
+              <button
+                @click="skipCreatingNewMilestone"
+                class="button is-small"
+                type="button"
+                title="Do not create a new milestone"
+              >
                 Skip
               </button>
               <small class="hint"
@@ -196,9 +206,13 @@ export default {
   created: function() {
     this.getCurrentReleaseNumber()
       .then(currentReleaseNumber => {
-        this.currentReleaseNumber = currentReleaseNumber;
-        return this.getSuggestedMilestoneTitles(currentReleaseNumber, 'Release ');
-      }).then(
+        this.currentReleaseNumber = currentReleaseNumber
+        return this.getSuggestedMilestoneTitles(
+          currentReleaseNumber,
+          'Release '
+        )
+      })
+      .then(
         suggestedMilestoneTitles =>
           (this.milestoneTitles = suggestedMilestoneTitles)
       )
@@ -260,7 +274,7 @@ export default {
                  }
                    }`
       return this.octoGraphClient
-        .json({ query: query })
+        .json({query: query})
         .post()
         .json(json =>
           json.data.repository.milestones.nodes

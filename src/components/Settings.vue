@@ -18,7 +18,11 @@
               required
             />
           </div>
-          <small>Just a name, e.g. for <code>https://github.com/github/docs</code> it will be <code>github</code>.</small>
+          <small
+            >Just the name, e.g. for
+            <code>https://github.com/github/docs</code> it will be
+            <code>github</code>.</small
+          >
         </div>
 
         <div class="field">
@@ -34,9 +38,12 @@
               required
             />
           </div>
-          <small>Just a name, e.g. for <code>https://github.com/github/docs</code> it will be <code>docs</code>.</small>
+          <small
+            >Just the name, e.g. for
+            <code>https://github.com/github/docs</code> it will be
+            <code>docs</code>.</small
+          >
         </div>
-
 
         <div class="field">
           <label for="githubAccessToken" class="label"
@@ -53,11 +60,17 @@
               maxlength="40"
             />
           </div>
-          <small>Need help? <a
-            href="https://github.com/settings/tokens/new"
-            target="_blank">Create a GitHub personal access token</a>, (<code>repo</code> permission is enough to create a Release and
-            fetch Releases, Issues and Milestones info).
-            <a href="https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/" target="_blank">Details</a>.
+          <small
+            >Need help?
+            <a href="https://github.com/settings/tokens/new" target="_blank"
+              >Create a GitHub personal access token</a
+            >, (the <code>repo</code> permission is enough to create a Release
+            and fetch Releases, Issues and Milestones info).
+            <a
+              href="https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/"
+              target="_blank"
+              >Details</a
+            >.
           </small>
         </div>
 
@@ -84,7 +97,8 @@ export default {
     }
   },
   mounted: function() {
-    const areSettingsSaved = this.githubOrganization && this.githubRepository && this.githubAccessToken
+    const areSettingsSaved =
+      this.githubOrganization && this.githubRepository && this.githubAccessToken
     if (areSettingsSaved) {
       this.areSettingsOpen = false
       this.emitEventWithSettings()

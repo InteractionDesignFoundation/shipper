@@ -3,9 +3,8 @@
     <h2 class="title">Select a milestone to close</h2>
 
     <p>
-      We attach GitHub issues to Milestones.
-      Closed milestone means issues attached to the milestone are ready
-      to be shipped.
+      We attach GitHub issues to Milestones. A closed milestone means that the
+      issues attached to the milestone are ready to be shipped.
     </p>
 
     <label for="milestoneSelector" class="label"
@@ -33,7 +32,7 @@
     </button>
     <div>
       <small
-        >in 99% cases it should be <code>Next Release</code> milestone</small
+        >The milestone will be <code>Next Release</code> 99% of the time</small
       >
     </div>
   </section>
@@ -93,7 +92,7 @@ export default {
                  }
                    }`
       return this.octoGraphClient
-        .json({ query: query })
+        .json({query: query})
         .post()
         .json(json => json.data.repository.milestones.nodes)
     },
