@@ -93,7 +93,7 @@ export default {
       githubOrganization: localStorage.getItem('githubOrganization') || '',
       githubRepository: localStorage.getItem('githubRepository') || '',
       githubAccessToken: localStorage.getItem('githubAccessToken') || '',
-      areSettingsOpen: true
+      areSettingsOpen: true,
     }
   },
   mounted: function() {
@@ -115,9 +115,9 @@ export default {
       this.$emit('settings-set', {
         githubOrganization: this.githubOrganization,
         githubRepository: this.githubRepository,
-        githubAccessToken: this.githubAccessToken
+        githubAccessToken: this.githubAccessToken,
       })
-    }
-  }
+    },
+  },
 }
 </script>

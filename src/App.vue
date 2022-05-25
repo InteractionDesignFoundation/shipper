@@ -52,7 +52,7 @@ export default {
     MilestoneSelector,
     Milestone,
     Release,
-    AfterDeployChecklist
+    AfterDeployChecklist,
   },
   data() {
     return {
@@ -62,7 +62,7 @@ export default {
       // steps
       selectedMilestone: undefined,
       milestoneUpdateCompleted: false,
-      createdRelease: undefined
+      createdRelease: undefined,
     }
   },
   methods: {
@@ -89,8 +89,8 @@ export default {
     },
     onReleaseCreated: function(createdRelease) {
       this.createdRelease = createdRelease
-    }
-  }
+    },
+  },
 }
 </script>
 

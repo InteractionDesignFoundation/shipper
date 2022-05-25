@@ -44,19 +44,19 @@ export default {
   props: {
     octoGraphClient: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
       milestones: [],
-      selectedMilestone: undefined
+      selectedMilestone: undefined,
     }
   },
   watch: {
     selectedMilestone: function(newMilestone) {
       this.$emit('milestone-changed', newMilestone)
-    }
+    },
   },
   created: function() {
     this.loadMilestones()
@@ -102,7 +102,7 @@ export default {
         this.$emit('milestones-loaded')
         return milestones
       })
-    }
-  }
+    },
+  },
 }
 </script>

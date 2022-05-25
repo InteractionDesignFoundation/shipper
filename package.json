@@ -5,7 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --modern",
-    "format": "yarn run eslint --fix --ext .js,.vue src,tests",
+    "format": "yarn run eslint --fix --ext .js,.vue src/**",
     "lint": "vue-cli-service lint",
     "test": "yarn test:unit",
     "test:unit": "vue-cli-service test:unit"
@@ -35,7 +35,34 @@
       "plugin:vue/essential",
       "eslint:recommended"
     ],
-    "rules": {},
+    "rules": {
+      "array-bracket-spacing": [
+        "warn",
+        "never"
+      ],
+      "comma-dangle": [
+        "warn",
+        {
+          "arrays": "always-multiline",
+          "objects": "always-multiline",
+          "imports": "never",
+          "exports": "never",
+          "functions": "never"
+        }
+      ],
+      "quotes": [
+        "warn",
+        "single",
+        {
+          "avoidEscape": true,
+          "allowTemplateLiterals": true
+        }
+      ],
+      "semi": [
+        "warn",
+        "never"
+      ]
+    },
     "parserOptions": {
       "parser": "babel-eslint"
     }

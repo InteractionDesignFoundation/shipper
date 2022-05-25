@@ -89,34 +89,34 @@ export default {
   props: {
     milestone: {
       type: Object,
-      required: true
+      required: true,
     },
     octoRestRepoClient: {
       type: Object,
-      required: true
+      required: true,
     },
     octoGraphClient: {
       type: Object,
-      required: true
+      required: true,
     },
     targetBranch: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
       releaseName: '',
       releaseNotes: '',
       createdRelease: undefined,
-      previousRelease: undefined
+      previousRelease: undefined,
     }
   },
   watch: {
     milestone: function(selectedMilestone) {
       this.releaseName = this.generateReleaseName(selectedMilestone)
       this.releaseNotes = this.generateReleaseNotes(selectedMilestone)
-    }
+    },
   },
   computed: {
     codeDiffUrl: function() {
@@ -124,7 +124,7 @@ export default {
         return undefined
       }
       return `https://github.com/InteractionDesignFoundation/IxDF-web/compare/${this.previousRelease.tagName}...${this.targetBranch}`
-    }
+    },
   },
   created: function() {
     this.fetchLastReleases().then(releases => {
@@ -205,15 +205,15 @@ export default {
           target_commitish: this.targetBranch,
           name: this.releaseName,
           body: this.releaseNotes,
-          draft: false
+          draft: false,
         })
         .post()
         .json(createdRelease => {
           this.$emit('release-created', createdRelease)
           return (this.createdRelease = createdRelease)
         })
-    }
-  }
+    },
+  },
 }
 </script>
 

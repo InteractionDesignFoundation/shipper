@@ -11,7 +11,7 @@
           <span
             :class="{
               'is-success': closedIssuesNumber > 0,
-              'is-danger': closedIssuesNumber < 1
+              'is-danger': closedIssuesNumber < 1,
             }"
             class="tag "
             >{{ closedIssuesNumber }}</span
@@ -24,7 +24,7 @@
           <span
             :class="{
               'is-success': openIssuesNumber === 0,
-              'is-danger': openIssuesNumber !== 0
+              'is-danger': openIssuesNumber !== 0,
             }"
             class="tag "
             >{{ openIssuesNumber }}</span
@@ -171,16 +171,16 @@ export default {
   props: {
     milestone: {
       type: Object,
-      required: true
+      required: true,
     },
     octoGraphClient: {
       type: Object,
-      required: true
+      required: true,
     },
     octoRestRepoClient: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
@@ -189,7 +189,7 @@ export default {
       nextMilestoneTitle: this.milestone.title,
       createdMilestone: undefined,
       milestoneTitles: [],
-      currentReleaseNumber: ''
+      currentReleaseNumber: '',
     }
   },
   computed: {
@@ -201,7 +201,7 @@ export default {
     openIssuesNumber: function() {
       return this.milestone.issues.nodes.filter(issue => issue.state === 'OPEN')
         .length
-    }
+    },
   },
   created: function() {
     this.getCurrentReleaseNumber()
@@ -223,7 +223,7 @@ export default {
         .url(`/milestones/${this.milestone.number}`)
         .json({
           state: 'closed',
-          title: this.thisMilestoneTitle
+          title: this.thisMilestoneTitle,
         })
         .patch()
         .json(json => {
@@ -237,7 +237,7 @@ export default {
         .url('/milestones')
         .json({
           title: `${this.nextMilestoneTitle}`,
-          state: 'open'
+          state: 'open',
         })
         .post()
         .json(json => {
@@ -310,8 +310,8 @@ export default {
       milestoneTitles.push(`${prefix}${currentMajorNumber + 1}.0.0`)
 
       return milestoneTitles
-    }
-  }
+    },
+  },
 }
 </script>
 
