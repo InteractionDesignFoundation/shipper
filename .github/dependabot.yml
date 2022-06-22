@@ -9,6 +9,6 @@ updates:
     labels:
       - "dependencies"
     reviewers:
-      - frontend-devs
+      - InteractionDesignFoundation/frontend-devs
     assignees:
       - ixdf-bot
