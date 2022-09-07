@@ -164,7 +164,7 @@
 </template>
 
 <script>
-import compareVersions from 'compare-versions'
+import {compareVersions} from 'compare-versions'
 
 export default {
   name: 'Milestone',
